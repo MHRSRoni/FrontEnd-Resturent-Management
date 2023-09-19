@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400;
+}
+
+.active {
+  background-color: #f7c25d !important;
+}
+
+.menu a:hover {
+  background-color: #f7c25d !important;
+}
