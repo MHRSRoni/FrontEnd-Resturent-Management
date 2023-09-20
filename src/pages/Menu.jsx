@@ -1,5 +1,4 @@
 import Category from '../components/Category';
-import Footer from '../components/Footer';
 import SearchBar from '../components/Search';
 import search from '../utils/search.js';
 import ProductList from '../components/ProductList'; // Create a ProductList component to display the products
@@ -40,7 +39,7 @@ function MenuPage() {
    
   // Render the CategoryComponent and ProductList
   return (
-    <div>
+    <div className='container mx-auto px-4 py-12'>
       <div className="menu-page">
         <h1 className="text-4xl font-bold text-center my-6">Our Menu</h1>
         <SearchBar onSearch={handleSearch} />
@@ -56,8 +55,6 @@ function MenuPage() {
           ))}
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

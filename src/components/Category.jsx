@@ -16,7 +16,7 @@ function CategoryComponent({ onCategoryChange }) {
   };
 
   return (
-    <div className="category border border-gray-300 p-4 shadow-lg">
+    <div className="category shadow-md p-4">
       <div className="flex flex-wrap gap-4 justify-center">
         <button
           onClick={() => handleCategoryClick('all')}

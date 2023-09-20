@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="hero ">
         <div className="hero-content text-center">
           <div className="max-w-lg mt-20">
@@ -10,7 +10,7 @@ const Hero = () => {
             <h2 className="text-4xl sm:text-6xl font-bold">
               tells a <span className="text-secondary">story</span>
             </h2>
-            <p className=" text-black mt-6 font-medium cursor-pointer">
+            <p className=" text-black mt-6 text-2xl font-medium cursor-pointer">
               Popular Items
             </p>
           </div>
