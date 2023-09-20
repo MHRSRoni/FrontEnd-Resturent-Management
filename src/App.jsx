@@ -1,13 +1,22 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-// import ItemDetailsPage from "./pages/ItemDetailsPage";
+
+import Layout from "./pages/Layout";
+import NoPage from "./pages/NoPage";
+import MenuPage from "./pages/Menu";
 
 function App() {
   return (
-    <div>
-      <Home />
-{/*       <ItemDetailsPage /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
