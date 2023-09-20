@@ -13,3 +13,16 @@ body {
 .menu a:hover {
   background-color: #f7c25d !important;
 }
+
+/* custom */
+.overlay-parent {
+  position: relative;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #0000007e;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
