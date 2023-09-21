@@ -19,11 +19,11 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Search for a product"
         value={searchTerm}
         onChange={handleInputChange}
-        className="w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500"
+        className="w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-opacity-50 focus:ring-orange-500"
       />
       <button
         onClick={handleSearch}
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-blue-500"
+        className="px-4 py-2 btn-primary text-black rounded-lg shadow-md hover:bg-orange-600 hover:text-white focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-orange-500"
       >
         Search
       </button>

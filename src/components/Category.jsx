@@ -1,55 +1,47 @@
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
-function CategoryComponent({ onCategoryChange }) {
-  const handleCategoryClick = (category) => {
-    // Send a GET request to the backend to filter products by category
-    axios
-      .get(`/api/products?category=${category}`)
-      .then((response) => {
-        // Call a callback function to pass the filtered products back to the parent component
-        onCategoryChange(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching products by category:', error);
-      });
+function Category({ onCategoryChange }) {
+  const handleClick = (category) => {
+    // Call the callback function with the selected category
+    onCategoryChange(category);
+    console.log(category);
   };
 
   return (
     <div className="category shadow-md p-4">
       <div className="flex flex-wrap gap-4 justify-center">
         <button
-          onClick={() => handleCategoryClick('all')}
+          onClick={() => handleClick('all')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           All
         </button>
         <button
-          onClick={() => handleCategoryClick('meat')}
+          onClick={() => handleClick('meat')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Meat
         </button>
         <button
-          onClick={() => handleCategoryClick('vegetarian')}
+          onClick={() => handleClick('vegetarian')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Vegetarian
         </button>
         <button
-          onClick={() => handleCategoryClick('beverage')}
+          onClick={() => handleClick('beverages')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
-          Beverage
+          Beverages
         </button>
         <button
-          onClick={() => handleCategoryClick('daily-special')}
+          onClick={() => handleClick('daily special')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Daily Special
         </button>
         <button
-          onClick={() => handleCategoryClick('deals')}
+          onClick={() => handleClick('deals')}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Deals
@@ -59,8 +51,8 @@ function CategoryComponent({ onCategoryChange }) {
   );
 }
 
-CategoryComponent.propTypes = {
+Category.propTypes = {
   onCategoryChange: PropTypes.func.isRequired,
 };
 
-export default CategoryComponent;
+export default Category;

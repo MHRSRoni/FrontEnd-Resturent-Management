@@ -5,6 +5,10 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
+import ItemDetailsPage from "./pages/ItemDetailsPage";
+
+
+export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1/"
 
 function App() {
   return (
@@ -13,6 +17,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/menu" element={<MenuPage />} />
+          <Route path="/itemDetailsPage" element={<ItemDetailsPage />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
