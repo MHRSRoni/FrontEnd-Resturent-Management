@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Card from '../components/Card'; // Import your CardComponent
+import Card from '../components/Card';
 import { BASE_URL } from '../App';
-import Category from '../components/Category'; // Import the Category component
+import Category from '../components/Category';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('all'); // Initialize selectedCategory
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Define the callback function to update the selected category
   const handleCategoryChange = (category) => {
@@ -30,7 +30,7 @@ function ProductList() {
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
-  }, [selectedCategory]); // Trigger the effect when selectedCategory changes
+  }, [selectedCategory]); 
 
   return (
     <div className="py-8 px-4">

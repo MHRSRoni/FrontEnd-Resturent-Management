@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import Button from './Button';
-import { useNavigate } from 'react-router-dom'; // Correct import statement
+import { useNavigate } from 'react-router-dom';
 
 function CardComponent({ productData, handleAddToCartClick, handleDetailsClick }) {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   handleAddToCartClick = () => {
-    // Implement your logic for adding to cart
+    // Implement logic for adding to cart
     return console.log('Item added to cart');
   };
 
