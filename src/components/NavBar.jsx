@@ -8,19 +8,22 @@ const NavBar = () => {
         <div className="navbar bg-base-100 justify-between">
           <div className="navbar-start">
             <div
-              className=" normal-case text-xl cursor-pointer"
+              className="text-xl md:text-2xl lg:text-3xl cursor-pointer uppercase"
               onClick={() => navigate("/")}
             >
               Kachchi <span className="text-secondary">Palace</span>
             </div>
           </div>
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden text-secondary"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                className="inline-block w-5 h-5 stroke-current"
+                className="inline-block w-8 h-8 stroke-current text-2xl"
               >
                 <path
                   strokeLinecap="round"
@@ -35,22 +38,30 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink to="/about">About</NavLink>
+                <NavLink className="md:text-base" to="/about">
+                  About
+                </NavLink>
               </li>
 
               <li>
-                <NavLink to="/contact">Contact</NavLink>
+                <NavLink className="md:text-base" to="/contact">
+                  Contact
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/menu">Menu</NavLink>
+                <NavLink className="md:text-base" to="/menu">
+                  Menu
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/sing-up">Sing Up</NavLink>
+                <NavLink className="md:text-base" to="/sing-up">
+                  Sing Up
+                </NavLink>
               </li>
             </ul>
           </div>
           <div className="navbar-end hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
+            <ul className="menu menu-horizontal px-1 text-base">
               <li>
                 <NavLink to="/">Home</NavLink>
               </li>

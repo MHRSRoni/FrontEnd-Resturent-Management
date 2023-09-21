@@ -42,8 +42,8 @@ const Carousel = () => {
       >
         {data.map((slider, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-[500px] overlay-parent">
-              <img src={slider} alt="" />
+            <div className="w-full h-72  md:h-[500px] overlay-parent">
+              <img className="w-full h-full object-cover" src={slider} alt="" />
               <div className="overlay"></div>
             </div>
           </SwiperSlide>
