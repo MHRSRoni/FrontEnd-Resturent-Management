@@ -1,12 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <div className="shadow-md">
       <div className="container mx-auto ">
         <div className="navbar bg-base-100 justify-between">
           <div className="navbar-start">
-            <div className=" normal-case text-xl cursor-pointer">
+            <div
+              className=" normal-case text-xl cursor-pointer"
+              onClick={() => navigate("/")}
+            >
               Kachchi <span className="text-secondary">Palace</span>
             </div>
           </div>
