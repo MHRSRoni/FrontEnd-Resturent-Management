@@ -1,4 +1,4 @@
-import Category from '../components/Category';
+
 import SearchBar from '../components/Search';
 import search from '../utils/search.js';
 import ProductList from '../components/ProductList'; // Create a ProductList component to display the products
@@ -10,10 +10,7 @@ function MenuPage() {
   const productsPerPage = 9;
 
 
-  const handleCategoryChange = (filteredData) => {
-    setFilteredProducts(filteredData);
-    setCurrentPage(1);
-  };
+  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -43,7 +40,6 @@ function MenuPage() {
       <div className="menu-page">
         <h1 className="text-4xl font-bold text-center my-6">Our Menu</h1>
         <SearchBar onSearch={handleSearch} />
-        <Category onCategoryChange={handleCategoryChange} />
         <ProductList products={productsToDisplay} /> {/* Display only the products for the current page */}
         
         {/* Pagination controls */}
