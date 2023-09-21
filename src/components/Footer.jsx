@@ -6,47 +6,56 @@ const Footer = () => {
     <div className=" bg-neutral">
       <footer className="footer p-10  container mx-auto">
         <div className="w-full h-full flex items-center">
-          <p>
+          <p className="text-3xl uppercase">
             Kachchi <span className="text-secondary">Palace</span>
           </p>
         </div>
         <nav>
-          <header className="footer-title text-black">Follow Us</header>
-          <a className="link link-hover flex">
+          <header className="footer-title text-base opacity-90">
+            Follow Us
+          </header>
+          <a className="link link-hover flex text-base">
             {" "}
-            <span className="text-blue-600 text-xl mr-3">
+            <span className="text-secondary text-xl mr-3">
               <BsFacebook />
             </span>{" "}
             Facebook
           </a>
-          <a className="link link-hover flex">
+          <a className="link link-hover flex text-base">
             {" "}
-            <span className="text-blue-600 text-xl mr-3">
+            <span className="text-secondary text-xl mr-3">
               <AiFillInstagram />
             </span>{" "}
             Instagram
           </a>
-          <a className="link link-hover flex">
+          <a className="link link-hover flex text-base">
             {" "}
-            <span className="text-blue-600 text-xl mr-3">
+            <span className="text-secondary text-xl mr-3">
               <BsTwitter />
             </span>{" "}
             Twitter
           </a>
         </nav>
         <nav>
-          <header className="footer-title">Contact Us</header>
-          <a className="link link-hover" href="mailto:someone@example.com">
+          <header className="footer-title text-base opacity-90">
+            Contact Us
+          </header>
+          <a
+            className="link link-hover text-base"
+            href="mailto:someone@example.com"
+          >
             abc@gmail.com
           </a>
-          <a className="link link-hover" href="tel:+8801925252525">
+          <a className="link link-hover text-base" href="tel:+8801925252525">
             {" "}
             +8801925252525
           </a>
         </nav>
         <nav>
-          <header className="footer-title">Open Hours</header>
-          <p>
+          <header className="footer-title text-base opacity-90">
+            Open Hours
+          </header>
+          <p className="text-base">
             The Restaurant opening hours <br /> are 9 a.m. to 6 p.m
           </p>
         </nav>
