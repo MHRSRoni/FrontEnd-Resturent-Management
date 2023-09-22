@@ -1,21 +1,21 @@
 const Button = (props) => {
-  const {
-    title,
-    className,
-    onClick,
-    // Add more props as needed
-  } = props;
-
-  return (
-    <div>
-      <button
-        className={`mr-10 py-2.5 px-5 text-md font-medium text-gray-900 bg-white rounded-lg border border-[#F7C25D] hover:bg-gray-100 hover:text-[#C837AB] ${className}`}
-        onClick={onClick}
-      >
-        {title}
-      </button>
-    </div>
-  );
-};
-
-export default Button;
+    const {
+      text,
+      className,
+      onClick,
+    } = props;
+  
+    return (
+      <div>
+        <button
+          className={`py-2.5 px-5 sm:py-1 sm:px-2 mt-2 sm:mt-1 text-sm font-normal text-gray-900 bg-white rounded-lg border border-[#F7C25D] hover:bg-orange-500 hover:border-orange-500 hover:text-white ${className}`}
+          onClick={onClick}
+        >
+          {text}
+        </button>
+      </div>
+    );
+  };
+  
+  export default Button;
+  

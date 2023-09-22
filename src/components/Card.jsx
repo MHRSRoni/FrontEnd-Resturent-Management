@@ -12,7 +12,7 @@ function CardComponent({ productData, handleAddToCartClick, handleDetailsClick }
 
   handleDetailsClick = () => {
     // Navigate to the single item page with the product ID as a parameter
-    return navigate('/itemDetailsPage');
+    return navigate(`/itemDetailsPage/${productData._id}`);
   };
 
   return (
