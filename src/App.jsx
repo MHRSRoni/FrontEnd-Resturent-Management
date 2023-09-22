@@ -7,8 +7,7 @@ import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 
-
-export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1/"
+export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1/";
 
 function App() {
   return (

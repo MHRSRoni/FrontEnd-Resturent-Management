@@ -3,12 +3,14 @@ import { AiFillInstagram } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div className=" bg-neutral">
+    <div className=" bg-neutral" id="footer-section">
       <footer className="footer p-10  container mx-auto">
-        <div className="w-full h-full flex items-center">
-          <p className="text-3xl uppercase">
-            Kachchi <span className="text-secondary">Palace</span>
-          </p>
+        <div className="w-full h-full flex  items-center">
+          <div>
+            <p className="text-3xl uppercase">
+              Kachchi <span className="text-secondary">Palace</span>
+            </p>
+          </div>
         </div>
         <nav>
           <header className="footer-title text-base opacity-90">

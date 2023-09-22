@@ -1,13 +1,16 @@
+import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 import GalleryItems from "./GalleryItem";
 
 const GallerySection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container mx-auto px-4 py-9">
       <div className="gallery-header flex justify-between items-center">
         <h4 className="text-black font-medium text-2xl">Deals</h4>
-        <button className="btn btn-sm btn-outline btn-primary">
-          view all deals
-        </button>
+
+        <Button text="view all deals" onClick={() => navigate("/menu")} />
       </div>
 
       <GalleryItems />

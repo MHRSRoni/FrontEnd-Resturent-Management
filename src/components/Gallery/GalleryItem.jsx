@@ -9,7 +9,7 @@ const Item = ({ image }) => {
     <img
       src={image}
       alt="gallery images"
-      className="w-full max-h-80  object-cover rounded-lg border-4 cursor-pointer hover:border-4 hover:border-primary"
+      className="w-full max-h-80  object-cover rounded-lg border-4 border-transparent cursor-pointer hover:border-4 hover:border-primary"
     />
   );
 };
