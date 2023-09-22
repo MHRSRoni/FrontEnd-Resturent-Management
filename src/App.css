@@ -6,6 +6,10 @@ body {
   font-weight: 400;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .active {
   background-color: #f7c25d !important;
 }

@@ -38,15 +38,21 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink className="md:text-base" to="/about">
-                  About
+                <NavLink className="md:text-base" to="/">
+                  Home
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className="md:text-base" to="/contact">
+                <a className="md:text-base" href="/#about-section">
+                  About
+                </a>
+              </li>
+
+              <li>
+                <a className="md:text-base" href="/#footer-section">
                   Contact
-                </NavLink>
+                </a>
               </li>
               <li>
                 <NavLink className="md:text-base" to="/menu">
@@ -61,22 +67,32 @@ const NavBar = () => {
             </ul>
           </div>
           <div className="navbar-end hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-base">
+            <ul className="menu menu-horizontal px-1  text-base">
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink className="mx-1" to="/">
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/about">About</NavLink>
+                <a className="mx-1" href="/#about-section">
+                  About
+                </a>
               </li>
 
               <li>
-                <NavLink to="/contact">Contact</NavLink>
+                <a className="md:text-base" href="/#footer-section">
+                  Contact
+                </a>
               </li>
               <li>
-                <NavLink to="/menu">Menu</NavLink>
+                <NavLink className="mx-1" to="/menu">
+                  Menu
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/sing-up">Sign Up</NavLink>
+                <NavLink className="mx-1" to="/sing-up">
+                  Sign Up
+                </NavLink>
               </li>
             </ul>
           </div>
