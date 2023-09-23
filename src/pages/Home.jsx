@@ -3,6 +3,7 @@ import Carousel from "../components/Carousel/Carousel";
 import ChefSection from "../components/Chef/ChefSection";
 import GallerySection from "../components/Gallery/GallerySection";
 import Hero from "../components/Hero";
+import VisitorSection from "../components/Visitors/VisitorSection";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <GallerySection />
       <AboutSection />
       <ChefSection />
+      <VisitorSection />
     </div>
   );
 };

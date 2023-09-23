@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Carousel.css";
 // import required modules
-import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import slider1 from "../../assets/image/slider-1.jpg";
 import slider2 from "../../assets/image/slider-2.jpg";
 import slider3 from "../../assets/image/slider-3.jpg";
@@ -29,21 +29,20 @@ const Carousel = () => {
           type: "progressbar",
         }}
         navigation={true}
-        mousewheel={true}
         loop={true}
         autoplay={{
           delay: 10000,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay, Pagination, Navigation, Mousewheel]}
+        modules={[Autoplay, Pagination, Navigation]}
         scrollbar={{ draggable: true }}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
         {data.map((slider, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-[500px] overlay-parent">
-              <img src={slider} alt="" />
+            <div className="w-full h-72  md:h-[500px] overlay-parent cursor-pointer">
+              <img className="w-full h-full object-cover" src={slider} alt="" />
               <div className="overlay"></div>
             </div>
           </SwiperSlide>
