@@ -24,3 +24,24 @@
     <Button text="+ Add to Cart" onClick={() => onAddToCartClick(productData)} />
     <Button text="Details" onClick={handleDetailsClick} />
     </div>
+
+
+
+
+
+
+
+
+
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+ 
+    
+    
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+    
+    // Generate an array of page numbers
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
