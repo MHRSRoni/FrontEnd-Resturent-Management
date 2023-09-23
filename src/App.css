@@ -30,3 +30,8 @@ html {
   top: 0;
   left: 0;
 }
+
+.h-fixed {
+  height: 32rem; /* Adjust the height to your needs */
+}
+
