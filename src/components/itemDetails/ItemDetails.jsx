@@ -46,16 +46,16 @@ const ItemDetails = () => {
             {foodData.title}
           </h1>
           <div className="sm:h-[32rem] mb-6 sm:mb-10">
-            <div className="mb-4">
+            <div className="mb-5 w-full h-[28rem]">
               <img
-                className="rounded-xl w-full"
+                className="rounded-xl w-full h-full object-cover"
                 src={foodData.image}
                 alt={foodData.title}
               />
             </div>
             <div className="flex flex-col sm:flex-row items-center">
               <div className="flex">
-                <p className="text-[#ff9137] mr-4 ml-0 sm:ml-10 text-lg ">
+                <p className="text-[#615851] mr-4 ml-0 sm:ml-10 text-lg ">
                   Price: {foodData.price} BDT
                 </p>
                 <p className="text-[#C837AB] text-lg">

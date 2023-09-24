@@ -9,9 +9,9 @@ const RelatedFood = ({data}) => {
     <div>
       <div className="sm:flex sm:h-24 m-2">
         <div className="w-full sm:w-1/2 sm:ml-4">
-          <div className="mb-4">
+          <div className="mb-4 h-24 w-40">
           <img
-                className="rounded-xl w-full"
+                className="rounded-xl w-full h-full object-cover"
                 src={image}
                 alt={title}
               />
