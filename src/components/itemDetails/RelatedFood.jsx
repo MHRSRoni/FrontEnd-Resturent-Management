@@ -9,16 +9,16 @@ const RelatedFood = ({data}) => {
     <div>
       <div className="sm:flex sm:h-24 m-2">
         <div className="w-full sm:w-1/2 sm:ml-4">
-          <div className="mb-4">
+          <div className="mb-4 h-24 w-40">
           <img
-                className="rounded-xl w-full"
+                className="rounded-xl w-full h-full object-cover"
                 src={image}
                 alt={title}
               />
           </div>
         </div>
         <div className="flex flex-col ml-3 w-full sm:w-1/2">
-          <h2 className="font-medium text-md">Burger and Fries</h2>
+          <h2 className="font-medium text-md">{title}</h2>
           <p className="text-gray-800 mt-2 text-sm">{description.slice(0,20)}...</p>
           <div className="flex flex-col sm:flex-row">
             <div>
