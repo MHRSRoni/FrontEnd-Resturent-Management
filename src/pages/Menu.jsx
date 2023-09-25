@@ -39,7 +39,7 @@ function MenuPage() {
     <div className='container mx-auto px-4 py-12'>
       <div className="menu-page">
         <h1 className="text-4xl font-bold text-center my-6">Our Menu</h1>
-        <SearchBar onSearch={handleSearch} />
+        
         <ProductList products={productsToDisplay} /> {/* Display only the products for the current page */}
         
         {/* Pagination controls */}
