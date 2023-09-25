@@ -18,9 +18,8 @@ const ChefSection = () => {
   return (
     <div>
       <div className="container mx-auto px-4 py-12">
-        <h4 className="text-black font-medium text-2xl text-center">
-          Meet the Chefs
-        </h4>
+        <h4 className="text-black font-medium text-2xl">Meet the Chefs</h4>
+        <hr className="mt-2" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-8">
           <ChefCard name="Daniel Due" title="Head Chef" />
           <ChefCard name="Daniel Due" title="Head Chef" />

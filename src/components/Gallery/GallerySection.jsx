@@ -12,7 +12,7 @@ const GallerySection = () => {
 
         <Button text="view all deals" onClick={() => navigate("/menu")} />
       </div>
-
+      <hr className="mt-2" />
       <GalleryItems />
     </div>
   );
