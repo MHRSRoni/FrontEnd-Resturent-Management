@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="shadow-md">
+    <div className="shadow-md sticky top-0 z-30 bg-base-100">
       <div className="container mx-auto ">
         <div className="navbar bg-base-100 justify-between">
           <div className="navbar-start">

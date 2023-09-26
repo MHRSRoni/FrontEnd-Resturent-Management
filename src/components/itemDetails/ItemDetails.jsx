@@ -14,7 +14,7 @@ const ItemDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}food/id/${id}`)
+      .get(`${BASE_URL}/food/id/${id}`)
       .then((response) => {
         setFoodData(response.data.data);
       })
@@ -26,7 +26,7 @@ const ItemDetails = () => {
   useEffect(() => {
     if (foodData.category) {
       axios
-        .get(`${BASE_URL}food/category/${foodData.category}`)
+        .get(`${BASE_URL}/food/category/${foodData.category}`)
         .then((response) => {
           const data = response.data.data;
           const filterData = data.filter((item) => item._id !== id);
