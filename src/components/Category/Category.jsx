@@ -1,53 +1,45 @@
-import PropTypes from 'prop-types';
-
-function Category({ onCategoryChange }) {
-  const handleClick = (category) => {
-    // Call the callback function with the selected category
-    onCategoryChange(category);
-    console.log(category);
-  };
-
+function Category({ onChangeHandler }) {
   return (
     <div className="category shadow-md p-4">
       <div className="flex flex-wrap gap-4 justify-center">
         <button
-          type='radio'
-          onClick={() => handleClick('all')}
+          type="radio"
+          onClick={() => onChangeHandler("")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           All
         </button>
         <button
-          type='radio'
-          onClick={() => handleClick('meat')}
+          type="radio"
+          onClick={() => onChangeHandler("meat")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Meat
         </button>
         <button
-          type='radio'
-          onClick={() => handleClick('vegetarian')}
+          type="radio"
+          onClick={() => onChangeHandler("vegetarian")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Vegetarian
         </button>
         <button
-          type='radio'
-          onClick={() => handleClick('beverages')}
+          type="radio"
+          onClick={() => onChangeHandler("beverage")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
-          Beverages
+          Beverage
         </button>
         <button
-          type='radio'
-          onClick={() => handleClick('daily-special')}
+          type="radio"
+          onClick={() => onChangeHandler("daily-special")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Daily Special
         </button>
         <button
-          type='radio'
-          onClick={() => handleClick('deals')}
+          type="radio"
+          onClick={() => onChangeHandler("deals")}
           className="btn btn-neutral hover:bg-primary hover:text-white"
         >
           Deals
@@ -56,9 +48,5 @@ function Category({ onCategoryChange }) {
     </div>
   );
 }
-
-Category.propTypes = {
-  onCategoryChange: PropTypes.func.isRequired,
-};
 
 export default Category;

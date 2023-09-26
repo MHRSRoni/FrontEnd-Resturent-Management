@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import "./components/Line-Loader/Loader.css";
 import Home from "./pages/Home";
 
 import Layout from "./pages/Layout";
@@ -7,7 +8,7 @@ import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 
-export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1/";
+export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1";
 
 function App() {
   return (
