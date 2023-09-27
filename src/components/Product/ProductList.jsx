@@ -48,7 +48,6 @@ function ProductList() {
     axios
       .get(URL)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setProducts(response?.data?.data);
           setTotalPage(response?.data?.totalPage);
@@ -57,7 +56,22 @@ function ProductList() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error?.response.status === 404) {
+          setProducts([
+            {
+              title: "",
+              image:
+                "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg",
+              price: "",
+              _id: "",
+              calories: "",
+              description: "",
+            },
+          ]);
+          setTotalPage(1);
+        }
+
+        console.log(error?.response?.data?.error?.message);
       })
       .finally(() => {
         setLoading(false);
