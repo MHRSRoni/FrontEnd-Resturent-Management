@@ -8,8 +8,10 @@ import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 
-export const BASE_URL = "https://backend-resturent-team-b.onrender.com/api/v1";
-
+// eslint-disable-next-line react-refresh/only-export-components
+export const BASE_URL =
+  import.meta.env.VITE_BASE_URL ||
+  "https://backend-resturent-team-b.onrender.com/api/v1";
 function App() {
   return (
     <BrowserRouter>
