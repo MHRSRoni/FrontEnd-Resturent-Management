@@ -3,10 +3,13 @@ import "./App.css";
 import "./components/Line-Loader/Loader.css";
 import Home from "./pages/Home";
 
+
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
@@ -20,6 +23,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/itemDetailsPage/:id" element={<ItemDetailsPage />} />
+          <Route path="/sign-up" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

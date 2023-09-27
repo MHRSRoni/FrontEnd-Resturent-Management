@@ -60,7 +60,7 @@ const NavBar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink className="md:text-base" to="/sing-up">
+                <NavLink className="md:text-base" to="/sign-up">
                   Sing Up
                 </NavLink>
               </li>
