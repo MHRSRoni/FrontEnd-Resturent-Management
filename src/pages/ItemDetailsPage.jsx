@@ -1,5 +1,7 @@
 import ItemDetails from '../components/itemDetails/ItemDetails'
 
+
+
 const ItemDetailsPage = () => {
   return (
     <div>

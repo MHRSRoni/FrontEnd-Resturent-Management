@@ -5,14 +5,19 @@ import GallerySection from "../components/Gallery/GallerySection";
 import Hero from "../components/Hero";
 import VisitorSection from "../components/Visitors/VisitorSection";
 
+
+
+
 const Home = () => {
+
+
   return (
     <div>
       <Hero />
       <Carousel />
       <GallerySection />
       <AboutSection />
-      <ChefSection />
+      <ChefSection />     
       <VisitorSection />
     </div>
   );

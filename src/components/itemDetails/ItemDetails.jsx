@@ -1,4 +1,5 @@
 import Button from "../Button";
+import Button2 from "../Button2";
 import RelatedFood from "./RelatedFood";
 import axios from "axios";
 import { BASE_URL } from "../../App";
@@ -65,7 +66,7 @@ const ItemDetails = () => {
 
               <div className="ml-auto">
                 <div className="flex mt-4 sm:mt-0">
-                  <Button text="+ Add to Wish List" onClick={() => {}} />
+                  <Button2 text="+ Add to Wish List" onClick={() => {}} />
                   <Button
                     text="+ Add to Cart"
                     className=" mr-10 ml-4"
