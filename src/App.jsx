@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage";
 import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||

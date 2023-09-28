@@ -1,5 +1,5 @@
 import restaurant from "../../assets/image/resturant.jpg";
-import Button from "../Button";
+import Button2 from "../Button2";
 const AboutSection = () => {
   return (
     <div className="bg-neutral" id="about-section">
@@ -28,7 +28,7 @@ const AboutSection = () => {
                 teraras, prer. Trilylingar. Pseudokroskap intrali
               </p>
               <div className="w-60 my-3">
-                <Button text="More about Us" onClick={() => {}} />
+                <Button2 text="More about Us" onClick={() => {}} />
               </div>
             </div>
           </div>

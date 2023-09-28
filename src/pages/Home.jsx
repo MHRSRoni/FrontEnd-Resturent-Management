@@ -4,8 +4,13 @@ import ChefSection from "../components/Chef/ChefSection";
 import GallerySection from "../components/Gallery/GallerySection";
 import Hero from "../components/Hero";
 import VisitorSection from "../components/Visitors/VisitorSection";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+
+
 
 const Home = () => {
+
+
   return (
     <div>
       <Hero />
@@ -13,6 +18,7 @@ const Home = () => {
       <GallerySection />
       <AboutSection />
       <ChefSection />
+      <ScrollToTop />
       <VisitorSection />
     </div>
   );
