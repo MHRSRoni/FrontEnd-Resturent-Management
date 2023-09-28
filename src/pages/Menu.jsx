@@ -1,5 +1,5 @@
 import ProductList from "../components/Product/ProductList";
-import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+
 
 function MenuPage() {
   return (
@@ -7,7 +7,7 @@ function MenuPage() {
       <div className="menu-page">
         <h1 className="text-4xl font-bold text-center my-6">Our Menu</h1>
         <ProductList />
-        <ScrollToTop />
+        
       </div>
     </div>
   );
