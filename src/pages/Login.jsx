@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
-        <section className="text-center py-10 " >
+        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center" >
             <div
-                style={{ height: "calc(100vh - 80px)" }}
+
                 className='w-3/12 shadow-2xl mx-auto py-10 hover:outline outline-2  outline-offset-2 outline-blue-500 ...'>
                 <h2 className='font-bold text-slate-950 mb-3'>Sign Up</h2>
                 <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300'></div>
@@ -25,6 +25,7 @@ const Login = () => {
                     </div>
 
                     <div className="form-control w-24 mx-auto mt-7">
+
 
                         <input className="btn btn-primary btn-sm mb-5" type="submit" value="Sign Up" />
 

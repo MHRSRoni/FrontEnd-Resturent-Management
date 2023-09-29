@@ -2,7 +2,7 @@ import React from 'react';
 
 const Otp = () => {
     return (
-        <section className="text-center py-10 " >
+        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center" >
             <div
                 style={{ height: "calc(100vh - 80px)" }}
                 className='w-3/12 shadow-2xl mx-auto py-10 hover:outline outline-2  outline-offset-2 outline-blue-500 ...'>
