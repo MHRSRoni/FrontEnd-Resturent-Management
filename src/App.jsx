@@ -10,6 +10,7 @@ import MenuPage from "./pages/Menu";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Otp from "./pages/Otp";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
@@ -25,6 +26,7 @@ function App() {
           <Route path="/itemDetailsPage/:id" element={<ItemDetailsPage />} />
           <Route path="/sign-up" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/otp" element={<Otp />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
