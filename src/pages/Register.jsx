@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/common/Button';
 
 const Register = () => {
     return (
-        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center" >
+        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center">
             <div
-                style={{ height: "calc(100vh - 80px)" }}
+
                 className='w-3/12 mx-auto py-10 shadow-2xl hover:outline outline-2  outline-offset-2 outline-blue-500 ... '>
                 <h2 className='font-bold text-black mb-6'>Register</h2>
                 <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300'></div>
@@ -30,13 +31,11 @@ const Register = () => {
 
                     </div>
                     <div className="form-control w-24 mx-auto mt-7">
+                        <Button variant="basic" size="normal" type="button" text=" Register" />
 
-                        <input className="btn btn-primary btn-sm mb-5" type="submit" value="Register" />
 
                     </div>
 
-
-                    {/* <h2>Already have an account KACHCHI PALACE <Link to='/sign-up'>Log In</Link></h2> */}
 
                 </form>
             </div>
