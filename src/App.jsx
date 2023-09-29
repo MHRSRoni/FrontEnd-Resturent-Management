@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Otp from "./pages/Otp";
 
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||
