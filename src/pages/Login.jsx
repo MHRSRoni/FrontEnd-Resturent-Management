@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/common/Button';
 
 const Login = () => {
     return (
@@ -7,7 +8,7 @@ const Login = () => {
             <div
 
                 className='w-3/12 shadow-2xl mx-auto py-10 hover:outline outline-2  outline-offset-2 outline-blue-500 ...'>
-                <h2 className='font-bold text-slate-950 mb-3'>Sign Up</h2>
+                <h2 className='font-bold text-slate-950 mb-3'>Log In</h2>
                 <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300'></div>
                 <form className='mx-auto'>
                     <div className="form-control w-full max-w-xs mx-auto mb-3">
@@ -27,7 +28,7 @@ const Login = () => {
                     <div className="form-control w-24 mx-auto mt-7">
 
 
-                        <input className="btn btn-primary btn-sm mb-5" type="submit" value="Sign Up" />
+                        <Button variant="basic" size="normal" type="button" text=" Log In" />
 
                     </div>
                     {/* <h2>New to KACHCHI PALACE <Link to='/register'> Create a New Account</Link></h2> */}
