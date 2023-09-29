@@ -29,7 +29,7 @@ const Login = () => {
                         <input className="btn btn-primary btn-sm mb-5" type="submit" value="Sign Up" />
 
                     </div>
-                    <h2>New to KACHCHI PALACE <Link to='/register'> Create a New Account</Link></h2>
+                    {/* <h2>New to KACHCHI PALACE <Link to='/register'> Create a New Account</Link></h2> */}
 
                 </form>
             </div>
