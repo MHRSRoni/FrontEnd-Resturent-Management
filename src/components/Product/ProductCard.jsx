@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Button from "../common/Button";
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
@@ -22,24 +23,22 @@ const ProductCard = ({ item }) => {
               <span>Calories :</span> {calories} cal
             </p>
           </div>
-          <div className="flex justify-between items-center gap-2">
+          <div className="flex justify-between items-center gap-2 mt-2">
             <div className="card-actions justify-start">
-              <button className="btn btn-primary btn-sm  hover:text-white">
-                + Add to Cart
-              </button>
+              <Button text="+ Add to Cart" variant="basic" size="small" />
             </div>
             <div className="card-actions justify-end">
-              <button
-                className="py-2.5 px-5 sm:py-1 sm:px-2 mt-2 sm:mt-1 text-sm font-normal text-gray-900 bg-white rounded-lg border border-orange-500 hover:bg-orange-500 hover:border-orange-500 hover:text-white"
+              <Button
+                text="Details"
+                variant="outline"
+                size="small"
                 onClick={() => navigate(`/itemDetailsPage/${_id}`)}
-              >
-                Details
-              </button>
+              />
             </div>
           </div>
         </div>
       ) : (
-        <p className="text-2xl text-center">No item found</p>
+        <p className="text-xl text-center py-2">No item found</p>
       )}
     </div>
   );
