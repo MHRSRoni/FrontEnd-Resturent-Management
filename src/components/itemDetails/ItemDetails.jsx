@@ -4,16 +4,19 @@ import RelatedFood from "./RelatedFood";
 import axios from "axios";
 import { BASE_URL } from "../../App";
 
+import Loader from "../Line-Loader/Loader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const ItemDetails = () => {
   const [foodData, setFoodData] = useState({});
   const [relatedFood, setRelatedFood] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${BASE_URL}/food/id/${id}`)
       .then((response) => {
@@ -21,6 +24,9 @@ const ItemDetails = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [id]);
 
@@ -43,7 +49,7 @@ const ItemDetails = () => {
     <div className="container mx-auto">
       <div className="flex flex-col sm:flex-row m-10">
         <div className="w-full sm:w-2/3">
-          <h1 className="mb-8 text-center font-semibold text-2xl">
+          <h1 className="mb-8 text-center font-semibold text-3xl">
             {foodData.title}
           </h1>
           <div className="sm:h-[32rem] mb-6 sm:mb-10">
@@ -56,10 +62,10 @@ const ItemDetails = () => {
             </div>
             <div className="flex flex-col sm:flex-row items-center">
               <div className="flex">
-                <p className="text-[#615851] mr-4 ml-0 sm:ml-10 text-lg ">
+                <p className="text-[#615851] mr-4 ml-0 sm:ml-10 text-sm sm:text-lg ">
                   Price: {foodData.price} BDT
                 </p>
-                <p className="text-[#C837AB] text-lg">
+                <p className="text-[#C837AB] text-sm sm:text-lg">
                   {foodData.calories} calories
                 </p>
               </div>
@@ -78,17 +84,25 @@ const ItemDetails = () => {
           </div>
           <p className="sm:ml-10 sm:mr-10">{foodData.description}</p>
         </div>
+
         <div className="w-full sm:w-1/3">
-          <h1 className="mb-4 sm:mb-8 mt-6 sm:mt-0 text-center font-semibold text-2xl">
+          <h1 className="mb-4 sm:mb-8 mt-6 sm:mt-0 text-center font-normal text-xl">
             Related Foods
           </h1>
-          <div className="h-fixed overflow-auto sm:ml-4 sm:border-l sm:border-orange-500">
-            {relatedFood.map((data) => (
-              <RelatedFood key={data._id} data={data} />
-            ))}
+          <div className="sm:ml-4 sm:border-l sm:border-orange-500">
+            {relatedFood.length === 0 ? (
+              <p className="ml-10 mt-10">
+                There is no related food for this item! Thanks.
+              </p>
+            ) : (
+              relatedFood
+                .slice(0, 5)
+                .map((data) => <RelatedFood key={data._id} data={data} />)
+            )}
           </div>
         </div>
       </div>
+      {loading && <Loader />}
     </div>
   );
 };
