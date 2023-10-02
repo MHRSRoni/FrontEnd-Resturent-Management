@@ -6,6 +6,7 @@ import { BASE_URL } from "../../App";
 import Loader from "../Line-Loader/Loader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 
 const ItemDetails = () => {
   const [foodData, setFoodData] = useState({});
@@ -46,7 +47,7 @@ const ItemDetails = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col sm:flex-row m-10">
+      <div className="flex flex-col sm:flex-row m-10 mb-20">
         <div className="w-full sm:w-2/3">
           <h1 className="mb-8 text-center font-semibold text-3xl">
             {foodData.title}
@@ -72,18 +73,20 @@ const ItemDetails = () => {
               <div className="ml-auto mr-8">
                 <div className="flex mt-4 sm:mt-0">
                   <div className="mr-4">
-                  <Button
-                text="+ ADD to wish list"
-                variant="outline"
-                size="normal"
-                onClick={() => navigate(`/itemDetailsPage/${_id}`)}
-              />
+                    <Button
+                      text="+ ADD to wish list"
+                      variant="outline"
+                      size="normal"
+                      onClick={() => navigate(`/itemDetailsPage/${_id}`)}
+                    />
                   </div>
                   <div>
-                  <Button text="+ Add to Cart" variant="basic" size="normal" />
+                    <Button
+                      text="+ Add to Cart"
+                      variant="basic"
+                      size="normal"
+                    />
                   </div>
-                
-                  
                 </div>
               </div>
             </div>
@@ -107,6 +110,12 @@ const ItemDetails = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="m-10">
+        <h1 className="mb-4 text-xl font-medium text-center text-gray-900 border-b sm:border-orange-500">
+          Comments
+        </h1>
+        <Comments />
       </div>
       {loading && <Loader />}
     </div>
