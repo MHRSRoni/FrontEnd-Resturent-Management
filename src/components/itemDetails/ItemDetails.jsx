@@ -1,5 +1,4 @@
-import Button from "../Button";
-import Button2 from "../Button2";
+import Button from "../common/Button";
 import RelatedFood from "./RelatedFood";
 import axios from "axios";
 import { BASE_URL } from "../../App";
@@ -53,7 +52,7 @@ const ItemDetails = () => {
             {foodData.title}
           </h1>
           <div className="sm:h-[32rem] mb-6 sm:mb-10">
-            <div className="mb-5 w-full h-[28rem]">
+            <div className="mb-6 w-full h-[27rem]">
               <img
                 className="rounded-xl w-full h-full object-cover"
                 src={foodData.image}
@@ -70,14 +69,21 @@ const ItemDetails = () => {
                 </p>
               </div>
 
-              <div className="ml-auto">
+              <div className="ml-auto mr-8">
                 <div className="flex mt-4 sm:mt-0">
-                  <Button2 text="+ Add to Wish List" onClick={() => {}} />
+                  <div className="mr-4">
                   <Button
-                    text="+ Add to Cart"
-                    className=" mr-10 ml-4"
-                    onClick={() => {}}
-                  />
+                text="+ ADD to wish list"
+                variant="outline"
+                size="normal"
+                onClick={() => navigate(`/itemDetailsPage/${_id}`)}
+              />
+                  </div>
+                  <div>
+                  <Button text="+ Add to Cart" variant="basic" size="normal" />
+                  </div>
+                
+                  
                 </div>
               </div>
             </div>
