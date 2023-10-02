@@ -9,7 +9,7 @@ const Register = () => {
 
                 className='w-3/12 mx-auto py-10 shadow-2xl hover:outline outline-2  outline-offset-2 outline-blue-500 ... '>
                 <h2 className='font-bold text-black mb-6'>Register</h2>
-                <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300'></div>
+                <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-500'></div>
                 <form className='mx-auto'>
                     <div className="form-control w-full max-w-xs mx-auto mb-3">
                         <h2 className='text-left text-gray-500 mb-4'>User Name</h2>
@@ -32,10 +32,9 @@ const Register = () => {
                     </div>
                     <div className="form-control w-24 mx-auto mt-7">
                         <Button variant="basic" size="normal" type="button" text=" Register" />
-
-
                     </div>
 
+                    <h3 className='mt-3'> Already have an account? <span className="text-orange-500"> <Link to='/sign-up'> Login</Link></span> </h3>
 
                 </form>
             </div>
