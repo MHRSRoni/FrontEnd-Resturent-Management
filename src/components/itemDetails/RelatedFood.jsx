@@ -7,9 +7,9 @@ const RelatedFood = ({data}) => {
 
   return (
     <div>
-      <div className="sm:flex h-auto sm:h-24 m-2">
+      <div className="sm:flex h-auto mb-6 sm:mb-2 sm:h-24 m-2">
         <div className="w-full sm:w-1/2 sm:ml-4">
-          <div className="mb-4 h-24 sm:w-40">
+          <div className="mb-4 h-52 sm:h-24 sm:w-40">
           <img
                 className="rounded-xl w-full h-full object-cover"
                 src={image}
@@ -25,7 +25,7 @@ const RelatedFood = ({data}) => {
               <p className=" text-gray-400 mt-1 text-sm">Price: {price}$</p>
               <p className=" text-gray-400 text-sm">Cal: {calories} cal</p>
             </div>
-            <div className="ml-3">
+            <div className=" ml-36 sm:ml-3">
               <Button text="Details" onClick={() => {navigate(`/itemDetailsPage/${_id}`)}} />
             </div>
           </div>
