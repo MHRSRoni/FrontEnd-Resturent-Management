@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../Button";
+
 import GalleryItems from "./GalleryItem";
+import Button from "../ui/Button";
 
 const GallerySection = () => {
   const navigate = useNavigate();

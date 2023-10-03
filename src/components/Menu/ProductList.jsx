@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import SearchBar from "../Search";
-import Loader from "../Line-Loader/Loader";
 import { BASE_URL } from "../../App";
-import ProductCard from "./ProductCard";
-import CardSalton from "../Line-Loader/CardSalton";
-import Category from "../Category/Category";
 import ReactPaginate from "react-paginate";
+import LineLoader from "../ui/LineLoader";
+import ProductCard from "./ProductCard";
+import SearchBar from "./Search";
+import CardSalton from "../ui/CardSalton";
+import CategoryList from "./CategoryList";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -90,7 +90,7 @@ function ProductList() {
           input={input}
           setInput={setInput}
         />
-        <Category onChangeHandler={handleChangeCategory} />
+        <CategoryList onChangeHandler={handleChangeCategory} />
         <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
           {products.length !== 0 ? (
             products.map((item) => <ProductCard key={item._id} item={item} />)
@@ -107,7 +107,7 @@ function ProductList() {
             </>
           )}
         </div>
-        {loading && <Loader />}
+        {loading && <LineLoader />}
       </div>
       <ReactPaginate
         previousLabel={"previous"}

@@ -1,12 +1,11 @@
-import Button from "../common/Button";
 import RelatedFood from "./RelatedFood";
 import axios from "axios";
 import { BASE_URL } from "../../App";
-
-import Loader from "../Line-Loader/Loader";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Comments from "./Comments";
+import Button from "../ui/Button";
+import LineLoader from "../ui/LineLoader";
 
 const ItemDetails = () => {
   const [foodData, setFoodData] = useState({});
@@ -14,6 +13,7 @@ const ItemDetails = () => {
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -117,7 +117,7 @@ const ItemDetails = () => {
         </h1>
         <Comments />
       </div>
-      {loading && <Loader />}
+      {loading && <LineLoader />}
     </div>
   );
 };
