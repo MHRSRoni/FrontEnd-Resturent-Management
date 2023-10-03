@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from '../components/common/Button';
+
 import { useAuth } from '../contexts/AuthProvider';
 import axios from 'axios';
+
+import Button from "../components/ui/Button";
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -43,6 +45,9 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className='mx-auto'>
                     <div className="form-control w-full max-w-xs mx-auto mb-3">
                         <h2 className='text-left text-gray-500 mb-4'>User Name</h2>
+
+
+
 
 
                         <input
@@ -88,6 +93,10 @@ const Register = () => {
             </div>
         </section>
     );
+
+
+
+
 };
 
 export default Register;
