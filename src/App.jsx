@@ -17,6 +17,7 @@ import Otp from "./pages/Otp";
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||
   "https://backend-resturent-team-b.onrender.com/api/v1";
+
 function App() {
   return (
     <BrowserRouter>
