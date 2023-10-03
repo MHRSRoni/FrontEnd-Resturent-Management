@@ -1,4 +1,4 @@
-function Category({ onChangeHandler }) {
+function CategoryList({ onChangeHandler }) {
   return (
     <div className="category shadow-md p-4">
       <div className="flex flex-wrap gap-4 justify-center">
@@ -49,4 +49,4 @@ function Category({ onChangeHandler }) {
   );
 }
 
-export default Category;
+export default CategoryList;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 const RelatedFood = ({ data }) => {
   const { description, price, title, calories, image, _id } = data || {};
@@ -29,6 +29,7 @@ const RelatedFood = ({ data }) => {
             </div>
             <div className=" ml-36 sm:ml-3">
               <Button
+                size="extra-small"
                 text="Details"
                 onClick={() => {
                   navigate(`/itemDetailsPage/${_id}`);

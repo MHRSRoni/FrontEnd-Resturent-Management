@@ -1,9 +1,9 @@
-import AboutSection from "../components/About/AboutSection";
-import Carousel from "../components/Carousel/Carousel";
-import ChefSection from "../components/Chef/ChefSection";
-import GallerySection from "../components/Gallery/GallerySection";
-import Hero from "../components/Hero";
-import VisitorSection from "../components/Visitors/VisitorSection";
+import AboutSection from "../components/Home/AboutSection";
+import Carousel from "../components/Home/Carousel";
+import ChefSection from "../components/Home/ChefSection";
+import GallerySection from "../components/Home/GallerySection";
+import Hero from "../components/Home/Hero";
+import VisitorSection from "../components/Home/VisitorSection";
 
 const Home = () => {
   return (
