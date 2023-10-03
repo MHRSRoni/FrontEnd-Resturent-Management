@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import Button from "../Button";
 
-const GoToTop = () => {
+function ScrollToTopBtn({ text, onClick, className, icon }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`btn btn-primary text-sm sm:text-lg hover:bg-orange-500 hover:border-orange-500 hover:text-white ${className}`}
+    >
+      {icon}
+      {text}
+    </button>
+  );
+}
+
+const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const goToBtn = () => {
@@ -30,16 +41,21 @@ const GoToTop = () => {
     right: "5%",
     transform: "translateX(-50%)",
     display: isVisible ? "block" : "none",
-    zIndex: 100
+    zIndex: 100,
   };
 
   return (
     <div style={buttonStyle}>
       {isVisible && (
-        <Button className="top-btn" onClick={goToBtn} text="" icon={<FaArrowUp className="top-btn--icon" />} />
+        <ScrollToTopBtn
+          className="top-btn"
+          onClick={goToBtn}
+          text=""
+          icon={<FaArrowUp className="top-btn--icon" />}
+        />
       )}
     </div>
   );
 };
 
-export default GoToTop;
+export default ScrollToTop;

@@ -1,5 +1,4 @@
-import "./Loader.css";
-const Loader = () => {
+const LineLoader = () => {
   return (
     <>
       <div className="LoadingOverlay">
@@ -11,4 +10,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default LineLoader;
