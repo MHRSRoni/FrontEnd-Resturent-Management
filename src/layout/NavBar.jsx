@@ -89,10 +89,28 @@ const NavBar = () => {
                   Menu
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink className="mx-1" to="/login">
                   Sign In
                 </NavLink>
+              </li> */}
+              <li>
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <label tabIndex={0} className="btn m-1">
+                    sumon barai
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1]   rounded-box "
+                  >
+                    <li>
+                      <a>Item 1</a>
+                    </li>
+                    <li>
+                      <a>Item 2</a>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>

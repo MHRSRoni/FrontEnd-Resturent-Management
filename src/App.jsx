@@ -9,11 +9,16 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Otp from "./pages/Otp";
 import NoPage from "./pages/NoPage";
+import DashboardLayout from "./layout/DashboardLayout";
+import UserDashboard from "./pages/UserDashboard";
+import MyProfile from "./components/Dashboard/MyProfile";
+import EditProfile from "./components/Dashboard/EditProfile";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||
   "https://kachchi-palace-v1.onrender.com/api/v1";
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +30,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/otp" element={<Otp />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<UserDashboard />} />
+          <Route path="myProfile" element={<MyProfile />} />
+          <Route path="editProfile" element={<EditProfile />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
