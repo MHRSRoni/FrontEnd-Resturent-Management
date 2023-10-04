@@ -1,12 +1,18 @@
 import { useState } from "react";
 import MenuHeader from "../presentional/MenuHeader";
 import SubMenu from "../presentional/SubMenu";
+import {useNavigate } from "react-router-dom";
 
 const SingleMenu = ({ menu, active, setActive }) => {
   //hook initialisation
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
 
-  
+  //function calls 
+  const clickHandler = (item) => {
+    setActive(`${menu.id}-${item.id}`)
+    navigate(`${menu.route}/${item.route}`)
+}
 
   return (
     <div className="">
@@ -19,13 +25,11 @@ const SingleMenu = ({ menu, active, setActive }) => {
       {/* subMenu  */}
       {open && 
         menu?.submenu.map((item) => (
-          <div key={item.id} className="">
+          <div key={item.id} className={`${active=== `${menu.id}-${item.id}` ? 'bg-gray-200' : ""}`}
+          onClick={()=>clickHandler(item)}>
             <SubMenu 
-              id={`${menu.id}-${item.id}`}
               title={item.title} 
-              route={`${menu.route}/${item.route}`} 
-              active={active === `${menu.id}-${item.id}`}
-              setActive={setActive}/>
+              clickHandler={()=>{}} />
           </div>
         ))
       }
