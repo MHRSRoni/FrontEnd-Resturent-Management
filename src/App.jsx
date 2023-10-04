@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Otp from "./pages/Otp";
 import NoPage from "./pages/NoPage";
 import DashboardHome from "./pages/adminDashBoard/Dashboard"
+import AllCustomer from './components/adminDashboard/customer/AllCustomer'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
@@ -29,7 +30,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
         <Route path='/admin' element={<DashboardHome />}>
-          <Route path='customer/create' element={<h2>create customer</h2>}/>
+          <Route path='customer/create' element={<AllCustomer />}/>
           <Route path='customer/delete' element={<h2>delete customer</h2>}/>
           <Route path='staff/create' element={<h2>create staff</h2>}/>
           <Route path='staff/delete' element={<h2>delete staff</h2>}/>
