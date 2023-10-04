@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import SideMenu from "../components/Dashboard/SideMenu";
+import SideMenu from "../components/UserDashboard/SideMenu";
 
-const DashboardLayout = () => {
+const UserDashboardLayout = () => {
   return (
     <div className="bg-[#EFF0F4]">
       <NavBar />
@@ -11,10 +11,10 @@ const DashboardLayout = () => {
         className="container mx-auto flex "
         style={{ height: "calc(100vh - 72px)" }}
       >
-        <div className=" w-1/6 m-5 ">
+        <div className=" w-1/6 m-5 h-full overflow-auto ">
           <SideMenu />
         </div>
-        <div className=" w-5/6 m-5">
+        <div className=" w-5/6  h-full overflow-auto">
           <Outlet />
         </div>
       </div>
@@ -23,4 +23,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default UserDashboardLayout;

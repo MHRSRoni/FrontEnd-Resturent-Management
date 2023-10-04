@@ -1,4 +1,5 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { MdKeyboardArrowDown, MdOutlineAccountBalance } from "react-icons/md";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -38,29 +39,29 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink className="md:text-base" to="/">
+                <NavLink className="md:text-base navLink" to="/">
                   Home
                 </NavLink>
               </li>
 
               <li>
-                <a className="md:text-base" href="/#about-section">
+                <a className="md:text-base navLink" href="/#about-section">
                   About
                 </a>
               </li>
 
               <li>
-                <a className="md:text-base" href="/#footer-section">
+                <a className="md:text-base navLink" href="/#footer-section">
                   Contact
                 </a>
               </li>
               <li>
-                <NavLink className="md:text-base" to="/menu">
+                <NavLink className="md:text-base navLink" to="/menu">
                   Menu
                 </NavLink>
               </li>
               <li>
-                <NavLink className="md:text-base" to="/login">
+                <NavLink className="md:text-base navLink" to="/login">
                   Sign In
                 </NavLink>
               </li>
@@ -69,23 +70,23 @@ const NavBar = () => {
           <div className="navbar-end hidden lg:flex">
             <ul className="menu menu-horizontal px-1  text-base">
               <li>
-                <NavLink className="mx-1" to="/">
+                <NavLink className="mx-1 navLink" to="/">
                   Home
                 </NavLink>
               </li>
               <li>
-                <a className="mx-1" href="/#about-section">
+                <a className="mx-1 navLink" href="/#about-section">
                   About
                 </a>
               </li>
 
               <li>
-                <a className="md:text-base" href="/#footer-section">
+                <a className="md:text-base navLink" href="/#footer-section">
                   Contact
                 </a>
               </li>
               <li>
-                <NavLink className="mx-1" to="/menu">
+                <NavLink className="mx-1 navLink" to="/menu">
                   Menu
                 </NavLink>
               </li>
@@ -94,23 +95,33 @@ const NavBar = () => {
                   Sign In
                 </NavLink>
               </li> */}
-              <li>
-                <div className="dropdown dropdown-bottom dropdown-end">
-                  <label tabIndex={0} className="btn m-1">
-                    sumon barai
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1]   rounded-box "
-                  >
-                    <li>
-                      <a>Item 1</a>
-                    </li>
-                    <li>
-                      <a>Item 2</a>
-                    </li>
-                  </ul>
+              <li className="dropdown dropdown-hover dropdown-end">
+                <div tabIndex={0} className="mx-1">
+                  <div className="avatar">
+                    <div className="w-7 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
+                      <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    </div>
+                  </div>
+                  <div>sumon barai</div>
+                  <MdKeyboardArrowDown />
                 </div>
+
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1]  menu  shadow bg-base-100 rounded-box w-60"
+                >
+                  <li>
+                    <Link>
+                      <span className="text-2xl">
+                        <MdOutlineAccountBalance />
+                      </span>
+                      <span>Management My Account</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>

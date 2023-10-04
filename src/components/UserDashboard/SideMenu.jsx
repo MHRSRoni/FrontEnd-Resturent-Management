@@ -11,18 +11,18 @@ const SideMenu = () => {
           <Link>Manage My Account</Link>
           <ul>
             <li>
-              <Link to="/dashboard/myProfile">My Profile</Link>
+              <Link to="/user/dashboard/myProfile">My Profile</Link>
             </li>
             <li>
-              <Link to="/dashboard/editProfile">Edit Profile</Link>
+              <Link to="/user/dashboard/editProfile">Edit Profile</Link>
             </li>
             <li>
-              <a>Change Password</a>
+              <Link to="/user/dashboard/changePassword">Change Password</Link>
             </li>
           </ul>
         </li>
         <li>
-          <a>My Wish list</a>
+          <Link to="/user/dashboard/wishList">My Wish list</Link>
         </li>
         <li>
           <a>My Cart</a>
