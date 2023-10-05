@@ -1,18 +1,27 @@
 import SingleComment from "./SingleComment";
+import Button from "../ui/Button";
 
 const Comments = () => {
   return (
     <div>
-      <div className="mb-10">
-        <form>
-          <label className="block mb-2 text-lg font-medium text-gray-900">
-            Creates comment
-          </label>
-          <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md"
-            type="text"
-            placeholder="Write your comment here..."
-          />
+      <div className="mb-24">
+        <form className="relative">
+          <div className="w-full relative">
+            <div>
+              <textarea
+                className="block mb-2 w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md h-24"
+                placeholder="Write your comment here..."
+              ></textarea>
+            </div>
+            <div className="absolute right-0 items-center pr-2">
+              <Button
+                text="POST"
+                variant="basic"
+                size="normal"
+                onClick={() => navigate()}
+              />
+            </div>
+          </div>
         </form>
       </div>
       <div>
