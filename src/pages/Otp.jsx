@@ -9,7 +9,7 @@ const Otp = () => {
         <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
         <form className="mx-auto">
           <div className="form-control w-full max-w-xs mx-auto mb-3">
-            <h2 className="mb-4 text-center text-slate-950 mb-4">Enter OTP</h2>
+            <h2 className="mb-4 text-center text-slate-950">Enter OTP</h2>
 
             <div className="flex space-x-2 mt-8">
               <input

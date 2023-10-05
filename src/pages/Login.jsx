@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Button from "../components/ui/Button";
 import { useAuth } from "../contexts/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -43,7 +43,7 @@ const Login = () => {
         <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center">
             <div className="w-full md:w-6/12 lg:w-4/12 shadow-2xl mx-auto py-10">
                 <h2 className="font-bold text-2xl text-slate-950 mb-3">Log In</h2>
-                <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
+                <div className="w-32 mx-auto h-0.5 mb-4 mt-0 bg-orange-300"></div>
                 <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                     <div className="form-control mb-3">
                         <h2 className="text-left text-slate-950 mb-2">Email</h2>
@@ -68,6 +68,7 @@ const Login = () => {
                     <div className="form-control mt-7">
                         <Button variant="basic" size="normal" type="button" text="Log In" />
                     </div>
+                    <h3 className="mt-2">Don't have an account? <span className="text-orange-500"><Link to="/register">Register</Link></span></h3>
                 </form>
             </div>
         </section>
