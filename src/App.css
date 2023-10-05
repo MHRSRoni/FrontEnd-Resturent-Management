@@ -10,11 +10,11 @@ html {
   scroll-behavior: smooth;
 }
 
-.active {
+.navLink.active {
   background-color: #f7c25d !important;
 }
 
-.menu a:hover {
+.menu .navLink:hover {
   background-color: #f7c25d !important;
 }
 
