@@ -39,41 +39,40 @@ const Login = () => {
 
 
     return (
-        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center" >
-            <div
 
-                className='w-3/12 shadow-2xl mx-auto py-10'>
-                <h2 className='font-bold text-2xl text-slate-950 mb-3'>Log In</h2>
-                <div className='w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300'></div>
-                <form onSubmit={handleSubmit} className='mx-auto'>
-                    <div className="form-control w-full max-w-xs mx-auto mb-3">
-                        <h2 className='text-left text-slate-950 mb-4'>Email</h2>
+        <section style={{ height: "calc(100vh - 80px)" }} className="text-center py-10 flex justify-center items-center">
+            <div className="w-full md:w-6/12 lg:w-4/12 shadow-2xl mx-auto py-10">
+                <h2 className="font-bold text-2xl text-slate-950 mb-3">Log In</h2>
+                <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
+                <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
+                    <div className="form-control mb-3">
+                        <h2 className="text-left text-slate-950 mb-2">Email</h2>
                         <input
                             type="email"
                             placeholder="Enter Your Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="input input-bordered w-full max-w-xs mx-auto"
+                            className="input input-bordered w-full"
                         />
-
                     </div>
-                    <div className="form-control w-full max-w-xs mx-auto mb-3">
-                        <h2 className='text-left text-slate-950 mb-4'>Password </h2>
-
+                    <div className="form-control mb-3">
+                        <h2 className="text-left text-slate-950 mb-2">Password</h2>
                         <input
                             type="password"
                             placeholder="Enter Your Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="input input-bordered w-full max-w-xs mx-auto"
+                            className="input input-bordered w-full"
                         />
                     </div>
-                    <div className="form-control w-24 mx-auto mt-7">
-                        <Button variant="basic" size="normal" type="button" text=" Log In" />
+                    <div className="form-control mt-7">
+                        <Button variant="basic" size="normal" type="button" text="Log In" />
                     </div>
                 </form>
             </div>
         </section>
+
+
     );
 };
 
