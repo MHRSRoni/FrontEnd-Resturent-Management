@@ -1,5 +1,103 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdKeyboardArrowDown, MdOutlineAccountBalance } from "react-icons/md";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineHeart,
+  AiOutlineGift,
+} from "react-icons/ai";
+
+const UserDashboardLink = () => {
+  return (
+    <>
+      <li>
+        <Link to="/user/dashboard/myProfile">
+          <span className="text-2xl">
+            <MdOutlineAccountBalance />
+          </span>
+          <span>Management My Account</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/user/dashboard/wishList">
+          <span className="text-2xl">
+            <AiOutlineHeart />
+          </span>
+          <span>My Wish list</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/user/dashboard/cartList">
+          <span className="text-2xl">
+            <AiOutlineShoppingCart />
+          </span>
+          <span>My Card list</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/user/dashboard/orderList">
+          <span className="text-2xl">
+            <AiOutlineGift />
+          </span>
+          <span>My Order</span>
+        </Link>
+      </li>
+    </>
+  );
+};
+
+const AllLink = () => {
+  return (
+    <>
+      <li>
+        <NavLink className="mx-1 navLink" to="/">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <a className="mx-1 navLink" href="/#about-section">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a className="md:text-base navLink" href="/#footer-section">
+          Contact
+        </a>
+      </li>
+      <li>
+        <NavLink className="mx-1 navLink" to="/menu">
+          Menu
+        </NavLink>
+      </li>
+      {/* <li>
+                <NavLink className="mx-1" to="/login">
+                  Sign In
+                </NavLink>
+              </li> */}
+      <li className="dropdown dropdown-bottom dropdown-end">
+        <div tabIndex={0} className="mx-1">
+          <div className="avatar">
+            <div className="w-7 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
+              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            </div>
+          </div>
+          <div>sumon barai</div>
+          <MdKeyboardArrowDown />
+        </div>
+
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1]  menu  shadow bg-base-100 rounded-box w-60"
+        >
+          <UserDashboardLink />
+          <li>
+            <Link>LogOut</Link>
+          </li>
+        </ul>
+      </li>
+    </>
+  );
+};
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -38,91 +136,12 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <NavLink className="md:text-base navLink" to="/">
-                  Home
-                </NavLink>
-              </li>
-
-              <li>
-                <a className="md:text-base navLink" href="/#about-section">
-                  About
-                </a>
-              </li>
-
-              <li>
-                <a className="md:text-base navLink" href="/#footer-section">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <NavLink className="md:text-base navLink" to="/menu">
-                  Menu
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="md:text-base navLink" to="/login">
-                  Sign In
-                </NavLink>
-              </li>
+              <AllLink />
             </ul>
           </div>
           <div className="navbar-end hidden lg:flex">
             <ul className="menu menu-horizontal px-1  text-base">
-              <li>
-                <NavLink className="mx-1 navLink" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <a className="mx-1 navLink" href="/#about-section">
-                  About
-                </a>
-              </li>
-
-              <li>
-                <a className="md:text-base navLink" href="/#footer-section">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <NavLink className="mx-1 navLink" to="/menu">
-                  Menu
-                </NavLink>
-              </li>
-              {/* <li>
-                <NavLink className="mx-1" to="/login">
-                  Sign In
-                </NavLink>
-              </li> */}
-              <li className="dropdown dropdown-hover dropdown-end">
-                <div tabIndex={0} className="mx-1">
-                  <div className="avatar">
-                    <div className="w-7 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
-                      <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                    </div>
-                  </div>
-                  <div>sumon barai</div>
-                  <MdKeyboardArrowDown />
-                </div>
-
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content z-[1]  menu  shadow bg-base-100 rounded-box w-60"
-                >
-                  <li>
-                    <Link>
-                      <span className="text-2xl">
-                        <MdOutlineAccountBalance />
-                      </span>
-                      <span>Management My Account</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </li>
+              <AllLink />
             </ul>
           </div>
         </div>

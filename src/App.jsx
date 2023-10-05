@@ -10,11 +10,13 @@ import Register from "./pages/Register";
 import Otp from "./pages/Otp";
 import NoPage from "./pages/NoPage";
 import UserDashboard from "./pages/UserDashboard";
-import UserDashboardLayout from "./layout/UserDashboardLayout";
 import MyProfile from "./components/UserDashboard/MyProfile";
 import EditProfile from "./components/UserDashboard/EditProfile";
 import ChangePassword from "./components/UserDashboard/ChangePassword";
 import WishList from "./components/UserDashboard/WishList";
+import MyCartList from "./components/UserDashboard/MyCartList";
+import OrderList from "./components/UserDashboard/OrderList";
+import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
@@ -34,12 +36,15 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="*" element={<NoPage />} />
         </Route>
-        <Route path="/user/dashboard" element={<UserDashboardLayout />}>
-          <Route index element={<UserDashboard />} />
+        <Route path="/user/dashboard" element={<UserDashboard />}>
+          <Route index element={<MyProfile />} />
           <Route path="myProfile" element={<MyProfile />} />
           <Route path="editProfile" element={<EditProfile />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="wishList" element={<WishList />} />
+          <Route path="cartList" element={<MyCartList />} />
+          <Route path="orderList" element={<OrderList />} />
+          <Route path="miscellaneous" element={<Miscellaneous />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
