@@ -39,7 +39,7 @@ const ItemDetails = () => {
           const filterData = data.filter((item) => item._id !== id);
           setRelatedFood(filterData);
         })
-        .catch((error) => {
+        .catch(() => {
           console.error("Error fetching data category api:");
         });
     }

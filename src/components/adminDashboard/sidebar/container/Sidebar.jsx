@@ -26,16 +26,18 @@ const Sidebar = () => {
       ],
     },
     {
-      id : 1,
+      id : 3,
       title: 'Food',
       route: 'food',
       submenu: [
-        {id : 1, title: 'create food', route: 'create' },
-        {id : 2, title: 'all food', route: 'all' },
+        {id : 1, title: 'Overview', route: 'overview' },
+        {id : 2, title: 'All food', route: 'all' },
+        {id : 3, title: 'Add food', route: 'add' },
+        {id : 4, title: 'Discount', route: 'discount' },
       ],
     },
     {
-      id : 3, 
+      id : 4, 
       title: 'Order',
       route: 'order',
       submenu: [{id : 1, title: 'all order', route: 'all' }],
