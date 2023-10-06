@@ -17,6 +17,8 @@ import WishList from "./components/UserDashboard/WishList";
 import MyCartList from "./components/UserDashboard/MyCartList";
 import OrderList from "./components/UserDashboard/OrderList";
 import Miscellaneous from "./components/UserDashboard/Miscellaneous";
+import AdminDashboard from "./components/adminDashboard";
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
@@ -47,6 +49,7 @@ function App() {
           <Route path="miscellaneous" element={<Miscellaneous />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+        <Route path='/admin/*' element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );
