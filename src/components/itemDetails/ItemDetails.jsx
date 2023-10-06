@@ -112,7 +112,7 @@ const ItemDetails = () => {
         </div>
       </div>
       <div className="m-10">
-        <h1 className="mb-4 text-xl font-medium text-center text-gray-900 border-b sm:border-orange-500">
+        <h1 className="mb-10 text-xl font-medium text-center text-gray-900 border-b sm:border-orange-500">
           Comments
         </h1>
         <Comments />
