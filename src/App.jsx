@@ -23,7 +23,7 @@ import AdminDashboard from "./components/adminDashboard";
 // eslint-disable-next-line react-refresh/only-export-components
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||
-  "https://kachchi-palace-v1.onrender.com/api/v1";
+  "https://kachchi-palace-v1.onrender.com/api";
 
 function App() {
   return (

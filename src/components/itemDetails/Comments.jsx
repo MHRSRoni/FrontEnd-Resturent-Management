@@ -15,7 +15,7 @@ const Comments = () => {
             </div>
             <div className="absolute right-0 items-center pr-2">
               <Button
-                text="POST"
+                text="Comment"
                 variant="basic"
                 size="normal"
                 onClick={() => navigate()}
