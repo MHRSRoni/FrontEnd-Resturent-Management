@@ -1,82 +1,104 @@
 import { useState } from "react";
 import Button from "../components/ui/Button";
-import { useAuth } from "../contexts/AuthProvider";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { useAuth } from "../contexts/AuthProvider";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
+  const [formData, setFormData] = useState({
+    emailOrUsername: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
-  const location = useLocation();
-  console.log(location);
+  // const [auth, setAuth] = useAuth();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    console.log(formData);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/login", { email, password });
-      if (data?.error) {
-        alert(data.error);
-      } else {
-        localStorage.setItem("auth", JSON.stringify(data));
-        setAuth({ ...auth, token: data.token, user: data.user });
-        alert("Login Successful");
-        navigate("/");
-        // navigate(location.state ||
-        //     `/dashboard/${data?.user?.role === 1 ? "admin" : "user"}`
-        // );
-      }
+      const input = formData.emailOrUsername;
+      const isEmail = input.includes("@");
+
+      const requestData = isEmail
+        ? { email: input, password: formData.password }
+        : { username: input, password: formData.password };
+
+      console.log(requestData);
+
+      const { data } = await axios.post(
+        "https://kachchi-palace-api-v1.onrender.com/api/v2/customer/login",
+        requestData
+      );
+
+      // localStorage.setItem("auth", JSON.stringify(data));
+      // setAuth({ ...auth, token: data.token, user: data.user });
+
+      alert("Login Successful");
+      navigate("/");
     } catch (error) {
       console.log(error);
-      alert("Login Failed Try Again");
+      alert("Login Failed. Try Again");
     }
   };
 
   return (
-    <section
-      style={{ height: "calc(100vh - 80px)" }}
-      className="text-center py-10 flex justify-center items-center"
-    >
-      <div className="w-3/12 shadow-2xl mx-auto py-10">
-        <h2 className="font-bold text-2xl text-slate-950 mb-3">Log In</h2>
+    <section className="bg-gray-50 py-10">
+      <div className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
+        <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
+          Log In
+        </h1>
         <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
-        <form onSubmit={handleSubmit} className="mx-auto">
-          <div className="form-control w-full max-w-xs mx-auto mb-3">
-            <h2 className="text-left text-slate-950 mb-4">Email</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-6 px-4">
+            <label className="block mb-2 text-sm text-left font-medium text-gray-800">
+              Email or Username
+            </label>
             <input
-              type="email"
-              placeholder="Enter Your Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input input-bordered w-full max-w-xs mx-auto"
+              type="text"
+              name="emailOrUsername"
+              placeholder="Enter Your Email or Username"
+              value={formData.emailOrUsername}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
             />
           </div>
-          <div className="form-control w-full max-w-xs mx-auto mb-3">
-            <h2 className="text-left text-slate-950 mb-4">Password </h2>
 
+          <div className="mb-6 px-4">
+            <label className="block mb-2 text-sm text-left font-medium text-gray-800">
+              Password
+            </label>
             <input
               type="password"
+              name="password"
               placeholder="Enter Your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input input-bordered w-full max-w-xs mx-auto"
+              value={formData.password}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
             />
           </div>
-          <div className="form-control w-24 mx-auto mt-7">
+          <div className="mb-8 px-4 text-center">
             <Button
               variant="basic"
               size="normal"
               type="button"
-              text=" Log In"
+              text="Log In"
+              onClick={handleSubmit}
             />
           </div>
-          <h3 className="mt-3">
-            Create new account?
+          <h3 className="mt-3 mb-4 text-center">
+            Create a new account?
             <span className="text-orange-500">
-              <Link to="/register"> Register</Link>
-            </span>{" "}
+              <Link to="/register">Register</Link>
+            </span>
           </h3>
         </form>
       </div>
