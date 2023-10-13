@@ -50,3 +50,17 @@ export const otpVerifyRequest = async (RegEmail, OTP_code) => {
     };
   }
 };
+export const loginRequest = async (reqBody) => {
+  try {
+    const response = await axios.post("v2/customer/login", reqBody);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};

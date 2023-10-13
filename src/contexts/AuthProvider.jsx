@@ -8,11 +8,13 @@ import { getLocalStorage } from "../utils/SessionHelper";
 
 export const AuthContext = createContext();
 
+const initialState = {
+  user: null,
+  token: "",
+};
+
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({
-    user: null,
-    token: "",
-  });
+  const [auth, setAuth] = useState(initialState);
 
   // axios config
   axios.defaults.baseURL =
@@ -20,9 +22,11 @@ const AuthProvider = ({ children }) => {
     "https://kachchi-palace-api-v1.onrender.com/api";
 
   useEffect(() => {
-    const data = getLocalStorage("auth");
-    if (data) {
-      setAuth({ user: data.user, token: data.token });
+    const userInfo = getLocalStorage("userInfo");
+    if (userInfo) {
+      setAuth(userInfo);
+    } else {
+      setAuth(initialState);
     }
   }, []);
 
