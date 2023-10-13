@@ -1,10 +1,25 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
-import axios from "axios";
+import { useState } from "react";
+import { getLocalStorage, removeLocalStorage } from "../utils/SessionHelper";
+
+import {
+  emailVerificationRequest,
+  otpVerifyRequest,
+} from "../ApiRequest/ApiRequest";
+import {
+  errorNotification,
+  successNotification,
+} from "../utils/NotificationHelper";
+import LineLoader from "../components/ui/LineLoader";
+
+const initialState = ["", "", "", "", "", ""];
 
 const Otp = () => {
-  const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""]);
+  const [otpDigits, setOtpDigits] = useState(initialState);
+
+  const RegEmail = getLocalStorage("RegEmail");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleOtpChange = (e, index) => {
@@ -14,48 +29,59 @@ const Otp = () => {
     setOtpDigits(updatedOtp);
   };
 
+  // verify otp code
   const handleVerify = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    const OTP_code = otpDigits.join("").trim();
 
-    if (otpDigits.join("").trim() === "") {
-      alert("Please enter the OTP before verifying.");
+    if (OTP_code === "") {
+      errorNotification("Please enter the OTP before verifying.");
       return;
     }
 
-    try {
-      const email = localStorage.getItem("userEmail");
-      const otp = otpDigits.join("");
+    const { status, data } = await otpVerifyRequest(RegEmail, OTP_code);
 
-      const response = await axios.get(
-        `https://kachchi-palace-api-v1.onrender.com/api/v2/customer/auth/verify?email=${email}&otp=${otp}`
-      );
-
-      if (response.data.success) {
-        alert("OTP Verification Successful");
-        navigate("/login");
-      } else {
-        alert("OTP Verification Failed. Please check the OTP and try again.");
-      }
-
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-      alert("An error occurred while verifying OTP. Please try again.");
+    if (status !== 200) {
+      errorNotification(errorNotification(data?.error?.message));
+    } else {
+      successNotification("OTP verify success");
+      navigate("/login");
     }
+    setLoading(false);
+    setOtpDigits(initialState);
+    removeLocalStorage("RegEmail");
+  };
+
+  // resend opt code
+  const handleResend = async () => {
+    setLoading(true);
+    const { status } = await emailVerificationRequest(RegEmail);
+    if (status === 200) {
+      successNotification("OTP Send for verification");
+    }
+    setLoading(false);
+    setOtpDigits(initialState);
   };
 
   return (
-    <section className="bg-gray-50 py-10">
+    <section
+      className="bg-gray-50  flex justify-center items-center "
+      style={{ height: "calc(100vh - 78px)", width: "100%" }}
+    >
       <div className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
-        <h2 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
+        <h2 className="block mb-2 mt-4 text-center text-3xl font-medium text-gray-900">
           OTP
         </h2>
         <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
         <form>
           <div className="mb-6 px-4">
-            <h2 className="block mb-2 text-sm text-center font-medium text-gray-800">
-              Enter OTP
+            <h2 className="block mb-2 text-xl text-center font-medium text-gray-800">
+              Please Enter the one time password to verify your account
             </h2>
+            <p className="text-center">
+              Your Verification code has been send {RegEmail}
+            </p>
 
             <div className="flex space-x-2 mt-8">
               {otpDigits.map((digit, index) => (
@@ -71,17 +97,24 @@ const Otp = () => {
             </div>
           </div>
 
-          <div className="mb-8 px-4 text-center">
+          <div className=" flex gap-2 justify-center">
             <Button
-              className=""
               variant="basic"
               size="normal"
               type="button"
-              text="Verify"
+              text="Verify OTP"
               onClick={handleVerify}
+            />
+            <Button
+              variant="outline"
+              size="normal"
+              type="button"
+              text="Resend OTP"
+              onClick={handleResend}
             />
           </div>
         </form>
+        {loading && <LineLoader />}
       </div>
     </section>
   );

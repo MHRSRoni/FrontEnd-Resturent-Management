@@ -1,16 +1,28 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Button from "../components/ui/Button";
-// import { BASE_URL } from "../App";
+import {
+  emailVerificationRequest,
+  registerRequest,
+} from "../ApiRequest/ApiRequest";
+import {
+  errorNotification,
+  successNotification,
+} from "../utils/NotificationHelper";
+import { setLocalStorage } from "../utils/SessionHelper";
+import LineLoader from "../components/ui/LineLoader";
+
+const initialState = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [formData, setFormData] = useState(initialState);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,39 +32,42 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    try {
-      const { data } = await axios.post(
-        "https://kachchi-palace-api-v1.onrender.com/api/v2/customer/register",
-        formData
-      );
+    const { status, data } = await registerRequest(formData);
 
-      const { data: data2 } = await axios.post(
-        "https://kachchi-palace-api-v1.onrender.com/api/v2/customer/send-verification",
+    if (status === 200) {
+      const { status, data } = await emailVerificationRequest(formData.email);
 
-        { email: formData.email, emailSubject: "Email verification" }
-      );
-
-      localStorage.setItem("userEmail", formData.email);
-
-      alert("Registration Successful");
-      navigate("/otp");
-
-      console.log(data);
-    } catch (error) {
-      console.log(error.message);
-      alert("Registration Failed. Try Again");
+      if (status === 200) {
+        setLocalStorage("RegEmail", formData.email);
+        successNotification(
+          "Registration Successful please verify your Email Address"
+        );
+        navigate("/otp");
+      } else {
+        setError(data?.error?.message);
+        errorNotification(data?.error?.message);
+        setLoading(false);
+      }
+    } else {
+      setError(data?.error?.message);
+      errorNotification(data?.error?.message);
+      setLoading(false);
     }
   };
 
   return (
-    <section className="bg-gray-50 py-10">
-      <div className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
+    <section
+      className="bg-gray-50 flex justify-center items-center"
+      style={{ height: "calc(100vh - 78px)", width: "100%" }}
+    >
+      <div className="w-4/5 md:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
           Register
         </h1>
@@ -60,7 +75,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-6 px-4">
             <label
-              for="User name"
+              htmlFor="User name"
               className="block mb-2 text-sm text-left font-medium text-gray-800"
             >
               Username
@@ -76,7 +91,7 @@ const Register = () => {
           </div>
           <div className="mb-6 px-4">
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm text-left font-medium text-gray-800"
             >
               Email{" "}
@@ -92,7 +107,7 @@ const Register = () => {
           </div>
           <div className="mb-6 px-4">
             <label
-              for="password"
+              htmlFor="password"
               className="block mb-2 text-sm text-left font-medium text-gray-800"
             >
               Password{" "}
@@ -108,7 +123,7 @@ const Register = () => {
           </div>
           <div className="mb-6 px-4">
             <label
-              for="Confirm password"
+              htmlFor="Confirm password"
               className="block mb-2 text-sm text-left font-medium text-gray-800"
             >
               Confirm password{" "}
@@ -130,6 +145,11 @@ const Register = () => {
               text=" Register"
             />
           </div>
+
+          {error && (
+            <p className="text-center text-red-600 capitalize">{error}</p>
+          )}
+
           <h3 className="mt-3 mb-4 text-center">
             {" "}
             Already have an account?{" "}
@@ -139,6 +159,7 @@ const Register = () => {
           </h3>
         </form>
       </div>
+      {loading && <LineLoader />}
     </section>
   );
 };
