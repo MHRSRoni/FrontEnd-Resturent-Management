@@ -30,7 +30,7 @@ const Otp = () => {
         `https://kachchi-palace-api-v1.onrender.com/api/v2/customer/auth/verify?email=${email}&otp=${otp}`
       );
 
-      if (response.data.success) {
+      if (response.data.status === "Success") {
         alert("OTP Verification Successful");
         navigate("/login");
       } else {
