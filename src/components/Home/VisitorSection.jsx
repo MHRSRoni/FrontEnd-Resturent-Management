@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../App";
 
 const VisitorSection = () => {
   const [visitor, setVisitor] = useState();
 
   useEffect(() => {
-    console.log("request");
     axios
-      .get(`${BASE_URL}/visitorCount`)
+      .get(`/v1/visitorCount`)
       .then((data) => {
         setVisitor(data?.data?.data?.visitorCount);
       })

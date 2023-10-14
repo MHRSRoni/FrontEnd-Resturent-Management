@@ -4,6 +4,7 @@ import { createContext } from "react";
 
 import { useState } from "react";
 import { useEffect } from "react";
+import { getLocalStorage } from "../utils/SessionHelper";
 
 export const AuthContext = createContext();
 
@@ -14,14 +15,14 @@ const AuthProvider = ({ children }) => {
   });
 
   // axios config
-  axios.defaults.baseURL = import.meta.env.VITE_API;
-  axios.defaults.headers.common["Authorization"] = auth?.token;
+  axios.defaults.baseURL =
+    import.meta.env.VITE_API ||
+    "https://kachchi-palace-api-v1.onrender.com/api";
 
   useEffect(() => {
-    const data = localStorage.getItem("auth");
+    const data = getLocalStorage("auth");
     if (data) {
-      const parsed = JSON.parse(data);
-      setAuth({ ...auth, user: parsed.user, token: parsed.token });
+      setAuth({ user: data.user, token: data.token });
     }
   }, []);
 
@@ -32,5 +33,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 export default AuthProvider;

@@ -51,7 +51,10 @@ const Login = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-10">
+    <section
+      className="bg-gray-50 flex justify-center items-center"
+      style={{ height: "calc(100vh - 78px)", width: "100%" }}
+    >
       <div className="w-4/5 sm:w-1/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="block mb-2 mt-4 text-center text-2xl font-medium text-gray-900">
           Log In

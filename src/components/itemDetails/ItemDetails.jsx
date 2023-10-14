@@ -1,6 +1,5 @@
 import RelatedFood from "./RelatedFood";
 import axios from "axios";
-import { BASE_URL } from "../../App";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Comments from "./Comments";
@@ -18,7 +17,7 @@ const ItemDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${BASE_URL}/food/id/${id}`)
+      .get(`/v1/food/id/${id}`)
       .then((response) => {
         setFoodData(response.data.data);
       })
