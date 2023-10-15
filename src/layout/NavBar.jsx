@@ -5,6 +5,10 @@ import {
   AiOutlineHeart,
   AiOutlineGift,
 } from "react-icons/ai";
+import { useAuth } from "../contexts/AuthProvider";
+import { logoutRequest } from "../ApiRequest/ApiRequest";
+import { removeLocalStorage } from "../utils/SessionHelper";
+import { successNotification } from "../utils/NotificationHelper";
 
 const UserDashboardLink = () => {
   return (
@@ -45,7 +49,22 @@ const UserDashboardLink = () => {
   );
 };
 
-const AllLink = () => {
+const AllLink = ({ user }) => {
+  const navigate = useNavigate();
+  const [, setAuth] = useAuth();
+
+  const handleLogOut = async () => {
+    const { data, status } = await logoutRequest();
+    if (status === 200) {
+      removeLocalStorage("userInfo");
+      setAuth({ user: null, token: "" });
+      navigate("/");
+      successNotification("successfully logout");
+    } else {
+      console.log(data);
+    }
+  };
+
   return (
     <>
       <li>
@@ -69,38 +88,54 @@ const AllLink = () => {
           Menu
         </NavLink>
       </li>
-      {/* <li>
-                <NavLink className="mx-1" to="/login">
-                  Sign In
-                </NavLink>
-              </li> */}
-      <li className="dropdown dropdown-bottom dropdown-end">
-        <div tabIndex={0} className="mx-1">
-          <div className="avatar">
-            <div className="w-7 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </div>
-          <div>sumon barai</div>
-          <MdKeyboardArrowDown />
-        </div>
 
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1]  menu  shadow bg-base-100 rounded-box w-60"
-        >
-          <UserDashboardLink />
-          <li>
-            <Link>LogOut</Link>
-          </li>
-        </ul>
-      </li>
+      {/* customer nav link */}
+      {user?.role === "customer" && (
+        <li className="dropdown dropdown-bottom dropdown-end">
+          <div tabIndex={0} className="mx-1">
+            <div className="avatar">
+              <div className="w-7 text-center capitalize bg-primary rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
+                {user.image ? (
+                  <img src={user.image} />
+                ) : (
+                  <span>{user.username.slice(0, 1)}</span>
+                )}
+              </div>
+            </div>
+            <div>{user.username}</div>
+            <MdKeyboardArrowDown />
+          </div>
+
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1]  menu  shadow bg-base-100 rounded-box w-60"
+          >
+            <UserDashboardLink />
+            <li onClick={handleLogOut}>
+              <Link>LogOut</Link>
+            </li>
+          </ul>
+        </li>
+      )}
+
+      {/* login link */}
+      {!user?.role && (
+        <li>
+          <NavLink className="mx-1 navLink" to="/login">
+            Sign In
+          </NavLink>
+        </li>
+      )}
     </>
   );
 };
 
 const NavBar = () => {
+  const [auth] = useAuth();
+
+  const { user } = auth || {};
   const navigate = useNavigate();
+
   return (
     <div className="shadow-md sticky top-0 z-30 bg-base-100">
       <div className="container mx-auto ">
@@ -136,12 +171,12 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <AllLink />
+              <AllLink user={user} />
             </ul>
           </div>
           <div className="navbar-end hidden lg:flex">
             <ul className="menu menu-horizontal px-1  text-base">
-              <AllLink />
+              <AllLink user={user} />
             </ul>
           </div>
         </div>

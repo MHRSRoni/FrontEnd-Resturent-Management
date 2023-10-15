@@ -59,9 +59,7 @@ const Login = () => {
 
     if (status === 200 && data.token) {
       const userInfo = {
-        user: {
-          name: data?.data[0]?.username,
-        },
+        user: data?.data,
         token: data.token,
       };
 
