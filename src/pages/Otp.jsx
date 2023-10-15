@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { useState } from "react";
 import { getLocalStorage, removeLocalStorage } from "../utils/SessionHelper";
+import axios from "axios"; // Import Axios
 
 import {
   emailVerificationRequest,
@@ -40,24 +41,26 @@ const Otp = () => {
       return;
     }
 
-    const { status, data } = await otpVerifyRequest(RegEmail, OTP_code);
+    try {
+      const { status, data } = await otpVerifyRequest(RegEmail, OTP_code);
 
-      const response = await axios.get(
-        `https://kachchi-palace-api-v1.onrender.com/api/v2/customer/auth/verify?email=${email}&otp=${otp}`
-      );
-
-      if (response.data.success) {
-        alert("OTP Verification Successful");
+      if (status === 200) {
+        successNotification("OTP Verification Successful");
         navigate("/login");
       } else {
-        alert("OTP Verification Failed. Please check the OTP and try again.");
+        errorNotification("OTP Verification Failed. Please check the OTP and try again.");
       }
-
-      console.log(response);
     } catch (error) {
       console.error(error);
-      alert("An error occurred while verifying OTP. Please try again.");
+      errorNotification("An error occurred while verifying OTP. Please try again.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  // Handle the "Resend OTP" functionality if needed
+  const handleResend = () => {
+    // Implement the logic to resend OTP
   };
 
   return (
@@ -73,10 +76,10 @@ const Otp = () => {
         <form>
           <div className="mb-6 px-4">
             <h2 className="block mb-2 text-xl text-center font-medium text-gray-800">
-              Please Enter the one time password to verify your account
+              Please Enter the one-time password to verify your account
             </h2>
             <p className="text-center">
-              Your Verification code has been send {RegEmail}
+              Your Verification code has been sent to {RegEmail}
             </p>
 
             <div className="flex space-x-2 mt-8">
@@ -93,7 +96,7 @@ const Otp = () => {
             </div>
           </div>
 
-          <div className=" flex gap-2 justify-center">
+          <div className="flex gap-2 justify-center">
             <Button
               variant="basic"
               size="normal"

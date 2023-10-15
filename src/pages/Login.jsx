@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../components/ui/Button";
 import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthProvider";
+import { useAuth } from "../contexts/AuthProvider";
 import axios from "axios";
 
 const Login = () => {
@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  // const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,8 +39,8 @@ const Login = () => {
         requestData
       );
 
-      // localStorage.setItem("auth", JSON.stringify(data));
-      // setAuth({ ...auth, token: data.token, user: data.user });
+      localStorage.setItem("auth", JSON.stringify(data));
+      setAuth({ ...auth, token: data.token, user: data.user });
 
       alert("Login Successful");
       navigate("/");

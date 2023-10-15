@@ -1,16 +1,25 @@
-import { useState } from 'react';
-import Button from '../ui/Button';
-import InputGroup from '../ui/InputGroup';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import Button from "../ui/Button";
+import InputGroup from "../ui/InputGroup";
+import axios from "axios";
+// import { useAuth } from "../../contexts/AuthProvider";
 
 const EditProfile = () => {
+  // const [auth, setAuth] = useAuth();
+
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: '',
-    address: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    address: "",
+    gender: "",
+    profilePic: "",
   });
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {}, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,20 +31,33 @@ const EditProfile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const data = {
-      first_name: formData.firstName,
-      last_name: formData.lastName,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
       email: formData.email,
-      mobile: formData.mobile,
+      phoneNo: formData.mobile,
       address: formData.address,
+      gender: formData.gender,
+      profilePic: formData.profilePic,
     };
 
     try {
-      const response = await axios.post('https://kachchi-palace-api-v1.onrender.com/api/v2/customer/profile-update', data);
-      console.log('Form data submitted:', response.data);
+      const response = await axios.post(
+        "https://kachchi-palace-api-v1.onrender.com/api/v2/customer/profile-update",
+        data,
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${auth.token}`,
+        //   },
+        // }
+      );
+      console.log("Form data submitted:", response.data);
+      setLoading(false);
     } catch (error) {
-      console.log('Error submitting form data:', error);
+      console.log("Error submitting form data:", error);
+      setLoading(false);
     }
   };
 
@@ -87,9 +109,50 @@ const EditProfile = () => {
               onChange={handleInputChange}
               size="normal"
             />
+            <div className="col-span-1">
+              <label
+                htmlFor="gender"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Gender
+              </label>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+                className=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3"
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div>
+              <label
+                className="block mb-2 text-sm font-medium dark:text-white"
+                for="file_input"
+              >
+                Upload Profile Picture
+              </label>
+              <input
+                classNmae="block w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="file_input"
+                type="file"
+                name="profilePic"
+                value={formData.profilePic}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
           <div className="w-48 mt-10">
-            <Button text="Update" variant="basic" type="submit" />
+            <Button
+              text="Update"
+              variant="basic"
+              type="submit"
+              disabled={loading}
+            />
           </div>
         </form>
       </div>
