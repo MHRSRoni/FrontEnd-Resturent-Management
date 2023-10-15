@@ -35,11 +35,11 @@ function ProductList() {
   // Url define
   let URL;
   if (searchValue) {
-    URL = `/v1/food?search=${searchValue}&pageNumber=${pageNumber}`;
+    URL = `/v2/food?search=${searchValue}&pageNumber=${pageNumber}`;
   } else if (category) {
-    URL = `/v1/food?category=${category}&pageNumber=${pageNumber}`;
+    URL = `/v2/food?category=${category}&pageNumber=${pageNumber}`;
   } else {
-    URL = `/v1/food?pageNumber=${pageNumber}`;
+    URL = `/v2/food?pageNumber=${pageNumber}`;
   }
 
   useEffect(() => {
