@@ -1,11 +1,19 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import SideMenu from "../components/UserDashboard/SideMenu";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
+import useLoggedIn from "../hooks/useLoggedIn";
 
 const UserDashboard = () => {
-  return (
+  const location = useLocation();
+
+  // checking user is login or not
+  const isLoggedIn = useLoggedIn();
+
+  return !isLoggedIn ? (
+    <Navigate to="/login" replace={true} state={{ from: location }} />
+  ) : (
     <div className="bg-[#EFF0F4]">
       <NavBar />
       <div

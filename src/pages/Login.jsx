@@ -1,17 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/ui/Button";
-import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthProvider";
-import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthProvider";
 
+import { loginRequest } from "../ApiRequest/ApiRequest";
+import LineLoader from "../components/ui/LineLoader";
+import {
+  errorNotification,
+  successNotification,
+} from "../utils/NotificationHelper";
+import { setLocalStorage } from "../utils/SessionHelper";
+import useLoggedIn from "../hooks/useLoggedIn";
+
+const initialState = {
+  emailOrUsername: "",
+  password: "",
+};
 const Login = () => {
-  const [formData, setFormData] = useState({
-    emailOrUsername: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState(initialState);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  // const [auth, setAuth] = useAuth();
+  const location = useLocation();
+  const [, setAuth] = useAuth();
+
+  const from = location?.state?.from?.pathname || "/";
+
+  // checking user is login or not
+  const isLoggedIn = useLoggedIn();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      return navigate(from, { replace: true });
+    }
+  }, [isLoggedIn, navigate, from]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,35 +42,38 @@ const Login = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const input = formData.emailOrUsername;
-      const isEmail = input.includes("@");
+    setLoading(true);
+    setError("");
+    const input = formData.emailOrUsername;
+    const isEmail = input.includes("@");
 
-      const requestData = isEmail
-        ? { email: input, password: formData.password }
-        : { username: input, password: formData.password };
+    const reqBody = isEmail
+      ? { email: input, password: formData.password }
+      : { username: input, password: formData.password };
 
-      console.log(requestData);
+    const { data, status } = await loginRequest(reqBody);
 
-      const { data } = await axios.post(
-        "https://kachchi-palace-api-v1.onrender.com/api/v2/customer/login",
-        requestData
-      );
+    if (status === 200 && data.token) {
+      const userInfo = {
+        user: data?.data,
+        token: data.token,
+      };
 
-      // localStorage.setItem("auth", JSON.stringify(data));
-      // setAuth({ ...auth, token: data.token, user: data.user });
+      setAuth(userInfo);
+      setLocalStorage("userInfo", userInfo);
 
-      alert("Login Successful");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      alert("Login Failed. Try Again");
+      successNotification("login success");
+      navigate(from, { replace: true });
+    } else {
+      setError("User Credentials incorrect");
+      errorNotification("User Credentials incorrect");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -88,6 +114,10 @@ const Login = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
             />
           </div>
+          {error && (
+            <p className="text-center text-red-600 capitalize p-2">{error}</p>
+          )}
+
           <div className="mb-8 px-4 text-center">
             <Button
               variant="basic"
@@ -97,6 +127,7 @@ const Login = () => {
               onClick={handleSubmit}
             />
           </div>
+
           <h3 className="mt-3 mb-4 text-center">
             Create a new account?
             <span className="text-orange-500">
@@ -105,6 +136,7 @@ const Login = () => {
           </h3>
         </form>
       </div>
+      {loading && <LineLoader />}
     </section>
   );
 };

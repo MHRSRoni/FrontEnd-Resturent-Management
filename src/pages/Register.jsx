@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import {
@@ -11,6 +11,7 @@ import {
 } from "../utils/NotificationHelper";
 import { setLocalStorage } from "../utils/SessionHelper";
 import LineLoader from "../components/ui/LineLoader";
+import useLoggedIn from "../hooks/useLoggedIn";
 
 const initialState = {
   username: "",
@@ -23,8 +24,15 @@ const Register = () => {
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
+
+  // checking user is login or not
+  const isLoggedIn = useLoggedIn();
+  useEffect(() => {
+    if (isLoggedIn) {
+      return navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

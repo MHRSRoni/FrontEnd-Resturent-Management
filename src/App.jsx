@@ -33,6 +33,7 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+
         <Route path="/user/dashboard" element={<UserDashboard />}>
           <Route index element={<MyProfile />} />
           <Route path="myProfile" element={<MyProfile />} />
