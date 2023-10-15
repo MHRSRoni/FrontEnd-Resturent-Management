@@ -18,6 +18,7 @@ import MyCartList from "./components/UserDashboard/MyCartList";
 import OrderList from "./components/UserDashboard/OrderList";
 import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 import AdminDashboard from "./components/adminDashboard";
+import EmployeeDetailsPage from "./pages/Employee";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
+          
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/itemDetailsPage/:id" element={<ItemDetailsPage />} />
           <Route path="/login" element={<Login />} />
@@ -50,6 +52,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
         <Route path='/admin/*' element={<AdminDashboard />} />
+        <Route path="/employee" element={<EmployeeDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
