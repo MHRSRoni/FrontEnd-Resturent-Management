@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getLocalStorage, removeLocalStorage } from "../utils/SessionHelper";
 import axios from "axios"; // Import Axios
 
@@ -13,6 +13,7 @@ import {
   successNotification,
 } from "../utils/NotificationHelper";
 import LineLoader from "../components/ui/LineLoader";
+import useLoggedIn from "../hooks/useLoggedIn";
 
 const initialState = ["", "", "", "", "", ""];
 
@@ -22,6 +23,14 @@ const Otp = () => {
   const RegEmail = getLocalStorage("RegEmail");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // checking user is login or not
+  const isLoggedIn = useLoggedIn();
+  useEffect(() => {
+    if (isLoggedIn) {
+      return navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleOtpChange = (e, index) => {
     const input = e.target.value.replace(/\D/g, "");

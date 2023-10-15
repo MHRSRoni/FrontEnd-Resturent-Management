@@ -6,7 +6,7 @@ const VisitorSection = () => {
 
   useEffect(() => {
     axios
-      .get(`/v1/visitorCount`)
+      .get(`/v2/info/visitorCount`)
       .then((data) => {
         setVisitor(data?.data?.data?.visitorCount);
       })
@@ -16,7 +16,7 @@ const VisitorSection = () => {
     <div className="bg-black">
       <div className="container mx-auto px-4 py-12">
         <p className="text-3xl uppercase text-center text-white">
-          Total Visitor : {visitor}
+          Total Visitor : {visitor ?? "00"}
         </p>
       </div>
     </div>
