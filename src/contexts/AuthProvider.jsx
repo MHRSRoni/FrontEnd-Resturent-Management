@@ -1,39 +1,42 @@
+import axios from "axios";
+import { useContext } from "react";
+import { createContext } from "react";
 
-
-import axios from 'axios';
-import { useContext } from 'react';
-import { createContext } from 'react';
-
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from "react";
+import { useEffect } from "react";
+import { getLocalStorage } from "../utils/SessionHelper";
 
 export const AuthContext = createContext();
 
-
-const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({
-        user: null,
-        token: "",
-    });
-
-    // axios config
-    axios.defaults.baseURL = import.meta.env.VITE_API;
-    axios.defaults.headers.common["Authorization"] = auth?.token;
-
-    useEffect(() => {
-        const data = localStorage.getItem("auth");
-        if (data) {
-            const parsed = JSON.parse(data);
-            setAuth({ ...auth, user: parsed.user, token: parsed.token })
-        }
-    }, []);
-
-    return (
-        <AuthContext.Provider value={[auth, setAuth]}>
-            {children}
-        </AuthContext.Provider>
-    );
+const initialState = {
+  user: null,
+  token: "",
 };
 
+const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState(initialState);
+
+  // axios config
+  axios.defaults.baseURL =
+    import.meta.env.VITE_API ||
+    "https://kachchi-palace-api-v1.onrender.com/api";
+
+  useEffect(() => {
+    const userInfo = getLocalStorage("userInfo");
+    if (userInfo) {
+      setAuth(userInfo);
+    } else {
+      setAuth(initialState);
+    }
+  }, []);
+
+  return (
+    <AuthContext.Provider value={[auth, setAuth]}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 export default AuthProvider;

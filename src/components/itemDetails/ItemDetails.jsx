@@ -1,6 +1,5 @@
 import RelatedFood from "./RelatedFood";
 import axios from "axios";
-import { BASE_URL } from "../../App";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Comments from "./Comments";
@@ -18,7 +17,7 @@ const ItemDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${BASE_URL}/food/id/${id}`)
+      .get(`/v2/food/id/${id}`)
       .then((response) => {
         setFoodData(response.data.data);
       })
@@ -33,7 +32,7 @@ const ItemDetails = () => {
   useEffect(() => {
     if (foodData.category) {
       axios
-        .get(`${BASE_URL}/food/category/${foodData.category}`)
+        .get(`/v2/food/category/${foodData.category}`)
         .then((response) => {
           const data = response.data.data;
           const filterData = data.filter((item) => item._id !== id);

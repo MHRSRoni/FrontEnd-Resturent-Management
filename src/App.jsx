@@ -18,6 +18,7 @@ import MyCartList from "./components/UserDashboard/MyCartList";
 import OrderList from "./components/UserDashboard/OrderList";
 import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 import AdminDashboard from "./components/adminDashboard";
+import { Toaster } from "react-hot-toast";
 import EmployeeDetailsPage from "./pages/Employee";
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+
         <Route path="/user/dashboard" element={<UserDashboard />}>
           <Route index element={<MyProfile />} />
           <Route path="myProfile" element={<MyProfile />} />
@@ -51,9 +53,11 @@ function App() {
           <Route path="miscellaneous" element={<Miscellaneous />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+        <Route path="/admin/*" element={<AdminDashboard />} />
         <Route path='/admin/*' element={<AdminDashboard />} />
         <Route path="/employee" element={<EmployeeDetailsPage />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }

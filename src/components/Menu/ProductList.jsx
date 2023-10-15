@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { BASE_URL } from "../../App";
 import ReactPaginate from "react-paginate";
 import LineLoader from "../ui/LineLoader";
 import ProductCard from "./ProductCard";
@@ -36,11 +35,11 @@ function ProductList() {
   // Url define
   let URL;
   if (searchValue) {
-    URL = `${BASE_URL}/food?search=${searchValue}&pageNumber=${pageNumber}`;
+    URL = `/v2/food?search=${searchValue}&pageNumber=${pageNumber}`;
   } else if (category) {
-    URL = `${BASE_URL}/food?category=${category}&pageNumber=${pageNumber}`;
+    URL = `/v2/food?category=${category}&pageNumber=${pageNumber}`;
   } else {
-    URL = `${BASE_URL}/food?pageNumber=${pageNumber}`;
+    URL = `/v2/food?pageNumber=${pageNumber}`;
   }
 
   useEffect(() => {

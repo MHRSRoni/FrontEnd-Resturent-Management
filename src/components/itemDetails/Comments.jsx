@@ -14,12 +14,7 @@ const Comments = () => {
               ></textarea>
             </div>
             <div className="absolute right-0 items-center pr-2">
-              <Button
-                text="POST"
-                variant="basic"
-                size="normal"
-                onClick={() => navigate()}
-              />
+              <Button text="Comment" variant="basic" size="normal" />
             </div>
           </div>
         </form>
