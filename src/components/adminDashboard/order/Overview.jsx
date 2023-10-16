@@ -1,5 +1,4 @@
 import Card from '../common/presentional/Card';
-import LineGraph from '../common/presentional/LineGraph';
 import Title from '../common/presentional/Title';
 
 const Overview = () => {
