@@ -31,6 +31,7 @@ const RelatedFood = ({ data }) => {
               <Button
                 size="extra-small"
                 text="Details"
+                variant="outline"
                 onClick={() => {
                   navigate(`/itemDetailsPage/${_id}`);
                 }}
