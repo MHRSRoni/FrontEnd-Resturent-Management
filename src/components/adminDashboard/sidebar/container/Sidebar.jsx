@@ -14,7 +14,7 @@ const Sidebar = () => {
       submenu: [
         {id : 1, title: 'Overview', route: '' },
         {id : 2, title: 'All Customer', route: 'all' },
-        {id : 3, title: 'Customer Profile', route: 'profile' },
+        {id : 3, title: 'Customer Profile', route: 'profile/id' },
       ],
     },
     {
