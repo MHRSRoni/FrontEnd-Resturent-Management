@@ -13,11 +13,10 @@ import {
 } from "../utils/NotificationHelper";
 import LineLoader from "../components/ui/LineLoader";
 import useLoggedIn from "../hooks/useLoggedIn";
-
-const initialState = ["", "", "", "", "", ""];
+import ReactCodeInput from "react-code-input";
 
 const Otp = () => {
-  const [otpDigits, setOtpDigits] = useState(initialState);
+  const [otpDigits, setOtpDigits] = useState("");
 
   const RegEmail = getLocalStorage("RegEmail");
   const [loading, setLoading] = useState(false);
@@ -31,25 +30,21 @@ const Otp = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleOtpChange = (e, index) => {
-    const input = e.target.value.replace(/\D/g, "");
-    const updatedOtp = [...otpDigits];
-    updatedOtp[index] = input;
-    setOtpDigits(updatedOtp);
+  const handleOtpChange = (e) => {
+    setOtpDigits(e);
   };
 
   // verify otp code
   const handleVerify = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const OTP_code = otpDigits.join("").trim();
 
-    if (OTP_code === "") {
+    if (otpDigits === "") {
       errorNotification("Please enter the OTP before verifying.");
       return;
     }
 
-    const { status, data } = await otpVerifyRequest(RegEmail, OTP_code);
+    const { status, data } = await otpVerifyRequest(RegEmail, otpDigits);
 
     if (status !== 200) {
       errorNotification(errorNotification(data?.error?.message));
@@ -58,7 +53,7 @@ const Otp = () => {
       navigate("/login");
     }
     setLoading(false);
-    setOtpDigits(initialState);
+    setOtpDigits("");
     removeLocalStorage("RegEmail");
   };
 
@@ -70,7 +65,7 @@ const Otp = () => {
       successNotification("OTP Send for verification");
     }
     setLoading(false);
-    setOtpDigits(initialState);
+    setOtpDigits("");
   };
 
   return (
@@ -84,7 +79,7 @@ const Otp = () => {
         </h2>
         <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
         <form>
-          <div className="mb-6 px-4">
+          <div className="mb-6 px-4 text-center">
             <h2 className="block mb-2 text-xl text-center font-medium text-gray-800">
               Please Enter the one time password to verify your account
             </h2>
@@ -92,7 +87,7 @@ const Otp = () => {
               Your Verification code has been send {RegEmail}
             </p>
 
-            <div className="flex space-x-2 mt-8">
+            {/* <div className="flex space-x-2 mt-8">
               {otpDigits.map((digit, index) => (
                 <input
                   key={index}
@@ -103,7 +98,9 @@ const Otp = () => {
                   onChange={(e) => handleOtpChange(e, index)}
                 />
               ))}
-            </div>
+            </div> */}
+
+            <ReactCodeInput type="text" fields={6} onChange={handleOtpChange} />
           </div>
 
           <div className=" flex gap-2 justify-center">
