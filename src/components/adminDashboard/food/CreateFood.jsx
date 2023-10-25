@@ -1,8 +1,13 @@
+import AddFoodForm from './components/AddFoodForm';
+
+
+
+
 
 const CreateFood = () => {
     return (
         <div>
-            <h2>CreateFood</h2>
+            <AddFoodForm />
         </div>
     );
 };
