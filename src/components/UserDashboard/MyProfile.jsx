@@ -4,10 +4,10 @@ import axios from 'axios';
 const MyProfile = () => {
   const [profileData, setProfileData] = useState(null);
 
-  useEffect(() => {
-    const apiUrl = '';
+  const customerId = 
 
-    axios.get('/v2/customer/profile')
+  useEffect(() => {
+    axios.get(`/v2/customer/profile/${customerId}`)
       .then((response) => {
         setProfileData(response.data);
       })

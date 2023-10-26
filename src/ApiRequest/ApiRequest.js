@@ -53,7 +53,7 @@ export const otpVerifyRequest = async (RegEmail, OTP_code) => {
 
 export const loginRequest = async (reqBody) => {
   try {
-    const response = await axios.post("v2/customer/login", reqBody);
+    const response = await axios.post("v2/customer/login", reqBody, {withCredentials: true});
     return {
       data: response.data,
       status: response.status,
@@ -65,6 +65,7 @@ export const loginRequest = async (reqBody) => {
     };
   }
 };
+
 export const logoutRequest = async () => {
   try {
     const response = await axios.get("v2/customer/logout");
@@ -79,3 +80,22 @@ export const logoutRequest = async () => {
     };
   }
 };
+
+
+export const editProfileRequest = async (reqBody, token) => {
+  try {
+    const response = await axios.post("/v2/customer/profile-update", reqBody, {
+      headers: { token },
+    });
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
