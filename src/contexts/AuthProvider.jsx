@@ -14,12 +14,14 @@ const initialState = {
 };
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(initialState);
+  const [auth, setAuth] = useState(null);
 
   // axios config
   axios.defaults.baseURL =
     import.meta.env.VITE_API ||
     "https://kachchi-palace-api-v1.onrender.com/api";
+
+  axios.defaults.headers.common["token"] = auth?.token;
 
   useEffect(() => {
     const userInfo = getLocalStorage("userInfo");

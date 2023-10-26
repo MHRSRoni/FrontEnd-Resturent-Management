@@ -1,10 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  addWishListRequest,
+  removeWishListRequest,
+} from "../../ApiRequest/ApiRequest";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, wishList, setWishList }) => {
   const navigate = useNavigate();
   const { title, image, price, _id, calories, description } = item;
+
+  const handleAddWishList = async () => {
+    const { status } = await addWishListRequest(_id);
+    if (status === 200) {
+      setWishList([...wishList, _id]);
+    }
+  };
+  const handleRemoveWishList = async () => {
+    const { status } = await removeWishListRequest(_id);
+    if (status === 200) {
+      const remainingList = wishList.filter((productId) => productId !== _id);
+      setWishList(remainingList);
+    }
+  };
 
   return (
     <div className="card card-compact  bg-base-100 shadow-xl group/item relative">
@@ -18,10 +36,21 @@ const ProductCard = ({ item }) => {
       <div
         className={`absolute top-0 left-0 w-full h-48 bg-[#0000007e] rounded-t-2xl invisible group-hover/item:visible`}
       >
-        <div className="text-3xl p-3 text-primary  cursor-pointer">
-          {/* {true ? <AiFillHeart /> : } */}
-          <AiOutlineHeart />
-        </div>
+        {wishList.includes(_id) ? (
+          <div
+            className="text-3xl p-3 text-primary  cursor-pointer"
+            onClick={handleRemoveWishList}
+          >
+            <AiFillHeart />
+          </div>
+        ) : (
+          <div
+            className="text-3xl p-3 text-primary  cursor-pointer"
+            onClick={handleAddWishList}
+          >
+            <AiOutlineHeart />
+          </div>
+        )}
       </div>
       {_id ? (
         <div className="card-body">
