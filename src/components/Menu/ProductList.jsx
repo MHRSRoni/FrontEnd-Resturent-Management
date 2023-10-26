@@ -7,6 +7,8 @@ import ProductCard from "./ProductCard";
 import SearchBar from "./Search";
 import CardSalton from "../ui/CardSalton";
 import CategoryList from "./CategoryList";
+import { useAuth } from "../../contexts/AuthProvider";
+import { getAllWishListRequest } from "../../ApiRequest/ApiRequest";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -16,6 +18,9 @@ function ProductList() {
   const [input, setInput] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
+  const [wishList, setWishList] = useState([]);
+
+  const [auth] = useAuth();
 
   const handleChangeCategory = (value) => {
     setSearchValue("");
@@ -81,6 +86,24 @@ function ProductList() {
     setPageNumber(data.selected + 1);
   };
 
+  // get all wishlist array
+  useEffect(() => {
+    if (auth.token) {
+      getAllWishListRequest()
+        .then((res) => {
+          const allList = res?.data?.data[0]?.foodId;
+          if (allList) {
+            setWishList(allList);
+          } else {
+            setWishList([]);
+          }
+        })
+        .catch(() => {
+          setWishList([]);
+        });
+    }
+  }, [auth.token]);
+
   return (
     <>
       <div className="py-2 px-4">
@@ -92,7 +115,14 @@ function ProductList() {
         <CategoryList onChangeHandler={handleChangeCategory} />
         <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
           {products.length !== 0 ? (
-            products.map((item) => <ProductCard key={item._id} item={item} />)
+            products.map((item) => (
+              <ProductCard
+                key={item._id}
+                item={item}
+                wishList={wishList}
+                setWishList={setWishList}
+              />
+            ))
           ) : (
             <>
               <CardSalton />
