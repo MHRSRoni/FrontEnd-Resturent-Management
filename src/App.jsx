@@ -28,9 +28,13 @@ import Checkout from "./pages/Checkout";
 export const BASE_URL =
   import.meta.env.VITE_BASE_URL ||
   "https://kachchi-palace-v1.onrender.com/api/v1";
+import { useAuth } from "./contexts/AuthProvider";
 
 function App() {
-  return (
+  const [auth] = useAuth();
+  return !auth ? (
+    "checking auth"
+  ) : (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}>

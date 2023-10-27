@@ -65,9 +65,55 @@ export const loginRequest = async (reqBody) => {
     };
   }
 };
+
 export const logoutRequest = async () => {
   try {
     const response = await axios.get("/v2/customer/logout");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const getAllWishListRequest = async () => {
+  try {
+    const response = await axios.get("v2/customer/wish");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const addWishListRequest = async (productId) => {
+  try {
+    const response = await axios.post(`v2/customer/wish/add/${productId}`);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const removeWishListRequest = async (productId) => {
+  try {
+    const response = await axios.delete(`v2/customer/wish/remove/${productId}`);
     return {
       data: response.data,
       status: response.status,
