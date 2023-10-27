@@ -20,6 +20,8 @@ import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 import AdminDashboard from "./components/adminDashboard";
 import { Toaster } from "react-hot-toast";
 import EmployeeDetailsPage from "./pages/Employee";
+import About from "./pages/About";
+import Checkout from "./pages/Checkout";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -34,6 +36,8 @@ function App() {
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
           
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<About />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/itemDetailsPage/:id" element={<ItemDetailsPage />} />
           <Route path="/login" element={<Login />} />

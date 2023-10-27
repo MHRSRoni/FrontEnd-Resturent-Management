@@ -53,7 +53,7 @@ export const otpVerifyRequest = async (RegEmail, OTP_code) => {
 
 export const loginRequest = async (reqBody) => {
   try {
-    const response = await axios.post("v2/customer/login", reqBody);
+    const response = await axios.post("v2/customer/login", reqBody, {withCredentials:true});
     return {
       data: response.data,
       status: response.status,
@@ -67,7 +67,7 @@ export const loginRequest = async (reqBody) => {
 };
 export const logoutRequest = async () => {
   try {
-    const response = await axios.get("v2/customer/logout");
+    const response = await axios.get("/v2/customer/logout");
     return {
       data: response.data,
       status: response.status,
