@@ -13,8 +13,8 @@ import { setLocalStorage } from "../utils/SessionHelper";
 import useLoggedIn from "../hooks/useLoggedIn";
 
 const initialState = {
-  emailOrUsername: "",
-  password: "",
+  emailOrUsername: "test@gmail.com",
+  password: "test123",
 };
 const Login = () => {
   const [formData, setFormData] = useState(initialState);
