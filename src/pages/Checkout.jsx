@@ -1,3 +1,4 @@
+import map from "../assets/image/Screenshot 2023-10-27 215121.png"
 import { useState } from 'react';
 
 const CheckoutPage = () => {
@@ -138,7 +139,7 @@ const CheckoutPage = () => {
           {/* Map Section */}
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Map</h2>
-          <img src="static-map-image.jpg" alt="Map" className="w-full rounded-lg" />
+          <img src={map} alt="Map" className="w-full rounded-lg" />
         </div>
 
         {/* Proceed to Payment Button */}

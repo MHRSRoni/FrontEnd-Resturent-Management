@@ -1,7 +1,10 @@
 import restaurant from "../../assets/image/resturant.jpg";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
+
+  const navigate = useNavigate();
   return (
     <div className="bg-neutral" id="about-section">
       <div className="container mx-auto px-4 py-12">
@@ -23,7 +26,7 @@ const AboutSection = () => {
               The Restaurant opening hours are 9 a.m. to 6 p.m
               </p>
               <div className="w-60 my-3">
-                <Button text="More about Us" onClick={() => {}} />
+                <Button text="More about Us" onClick={() => navigate("/about")} />
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ const EmployeeDetailsPage = () => {
     },
     employeeInfo: {
       employeeId: 'EMP1234',
-      salary: '$500,000',
+      salary: '$50,000',
       healthStatus: true,
       position: 'Chef',
       insuranceStatus: true,

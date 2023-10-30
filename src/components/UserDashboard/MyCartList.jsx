@@ -1,7 +1,10 @@
 import Button from "../ui/Button";
 import MyCartItem from "./MyCartItem";
+import { useNavigate } from "react-router-dom";
 
 const MyCartList = () => {
+
+  const navigate = useNavigate();
   return (
     <div>
       <div>
@@ -23,7 +26,7 @@ const MyCartList = () => {
           <p className="text-xl">
             Total price : <span>6000</span> BDT
           </p>
-          <Button text="checkout" />
+          <Button text="checkout" onClick={() => navigate("/checkout")}/>
         </div>
       </div>
     </div>
