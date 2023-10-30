@@ -6,11 +6,15 @@ import {
   AiOutlineHeart,
   AiOutlineGift,
 } from "react-icons/ai";
+import { useAuth } from "../../contexts/AuthProvider";
 const SideMenu = () => {
+  const [auth] = useAuth();
+
   return (
     <div>
       <h2 className="text-md text-center mb-4">
-        Hello <span className="text-secondary capitalize">Sumon Barai</span>
+        Hello{" "}
+        <span className="text-secondary capitalize">{auth?.user.username}</span>
       </h2>
       <ul className="menu">
         <li>
