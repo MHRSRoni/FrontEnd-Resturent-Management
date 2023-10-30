@@ -125,3 +125,18 @@ export const removeWishListRequest = async (productId) => {
     };
   }
 };
+
+export const getAllWishListDetailsRequest = async () => {
+  try {
+    const response = await axios.get("v2/customer/wish/details");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
