@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const MyProfile = () => {
   const [profileData, setProfileData] = useState(null);
 
-  const customerId = 
-
   useEffect(() => {
-    axios.get(`/v2/customer/profile/${customerId}`)
+    axios
+      .get("/v2/customer/profile")
       .then((response) => {
         setProfileData(response.data);
+        console.log("Data received:", response.data);
       })
       .catch((error) => {
-        console.log('Error fetching profile data:', error);
+        console.log("Error fetching profile data:", error);
       });
   }, []);
+
+  console.log("Profile Data:", profileData);
 
   return (
     <div>
@@ -26,23 +28,19 @@ const MyProfile = () => {
           <>
             <div className="p-2">
               <h5>Name</h5>
-              <p>{`${profileData.first_name} ${profileData.last_name}`}</p>
-            </div>
-            <div className="p-2">
-              <h5>Email</h5>
-              <p>{profileData.email}</p>
+              <p>{`${profileData.data?.firstName} ${profileData.data?.lastName}`}</p>
             </div>
             <div className="p-2">
               <h5>Mobile</h5>
-              <p>{profileData.mobile}</p>
+              <p>{profileData.data?.phoneNo}</p>
             </div>
             <div className="p-2">
               <h5>Address</h5>
-              <p>{profileData.address}</p>
+              <p>{profileData.data?.address}</p>
             </div>
             <div className="p-2">
               <h5>Gender</h5>
-              <p>{profileData.gender}</p>
+              <p>{profileData.data?.gender}</p>
             </div>
           </>
         ) : (

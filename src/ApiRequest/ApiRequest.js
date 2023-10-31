@@ -53,7 +53,7 @@ export const otpVerifyRequest = async (RegEmail, OTP_code) => {
 
 export const loginRequest = async (reqBody) => {
   try {
-    const response = await axios.post("v2/customer/login", reqBody, {withCredentials: true});
+    const response = await axios.post("v2/customer/login", reqBody);
     return {
       data: response.data,
       status: response.status,
@@ -81,12 +81,9 @@ export const logoutRequest = async () => {
   }
 };
 
-
-export const editProfileRequest = async (reqBody, token) => {
+export const getAllWishListRequest = async () => {
   try {
-    const response = await axios.post("/v2/customer/profile-update", reqBody, {
-      headers: { token },
-    });
+    const response = await axios.get("v2/customer/wish");
     return {
       data: response.data,
       status: response.status,
@@ -99,3 +96,62 @@ export const editProfileRequest = async (reqBody, token) => {
   }
 };
 
+export const addWishListRequest = async (productId) => {
+  try {
+    const response = await axios.post(`v2/customer/wish/add/${productId}`);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const removeWishListRequest = async (productId) => {
+  try {
+    const response = await axios.delete(`v2/customer/wish/remove/${productId}`);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const getAllWishListDetailsRequest = async () => {
+  try {
+    const response = await axios.get("v2/customer/wish/details");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const editProfileRequest = async (reqBody) => {
+  try {
+    const response = await axios.post("/v2/customer/profile-update", reqBody);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { useEffect, useState } from "react";
 import { getLocalStorage, removeLocalStorage } from "../utils/SessionHelper";
-import axios from "axios"; // Import Axios
 
 import {
   emailVerificationRequest,
@@ -14,11 +13,10 @@ import {
 } from "../utils/NotificationHelper";
 import LineLoader from "../components/ui/LineLoader";
 import useLoggedIn from "../hooks/useLoggedIn";
-
-const initialState = ["", "", "", "", "", ""];
+import ReactCodeInput from "react-code-input";
 
 const Otp = () => {
-  const [otpDigits, setOtpDigits] = useState(initialState);
+  const [otpDigits, setOtpDigits] = useState("");
 
   const RegEmail = getLocalStorage("RegEmail");
   const [loading, setLoading] = useState(false);
@@ -32,44 +30,42 @@ const Otp = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleOtpChange = (e, index) => {
-    const input = e.target.value.replace(/\D/g, "");
-    const updatedOtp = [...otpDigits];
-    updatedOtp[index] = input;
-    setOtpDigits(updatedOtp);
+  const handleOtpChange = (e) => {
+    setOtpDigits(e);
   };
 
   // verify otp code
   const handleVerify = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const OTP_code = otpDigits.join("").trim();
 
-    if (OTP_code === "") {
+    if (otpDigits === "") {
       errorNotification("Please enter the OTP before verifying.");
       return;
     }
 
-    try {
-      const { status, data } = await otpVerifyRequest(RegEmail, OTP_code);
+    const { status, data } = await otpVerifyRequest(RegEmail, otpDigits);
 
-      if (status === 200) {
-        successNotification("OTP Verification Successful");
-        navigate("/login");
-      } else {
-        errorNotification("OTP Verification Failed. Please check the OTP and try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      errorNotification("An error occurred while verifying OTP. Please try again.");
-    } finally {
-      setLoading(false);
+    if (status !== 200) {
+      errorNotification(errorNotification(data?.error?.message));
+    } else {
+      successNotification("OTP verify success");
+      navigate("/login");
     }
+    setLoading(false);
+    setOtpDigits("");
+    removeLocalStorage("RegEmail");
   };
 
-  // Handle the "Resend OTP" functionality if needed
-  const handleResend = () => {
-    // Implement the logic to resend OTP
+  // resend opt code
+  const handleResend = async () => {
+    setLoading(true);
+    const { status } = await emailVerificationRequest(RegEmail);
+    if (status === 200) {
+      successNotification("OTP Send for verification");
+    }
+    setLoading(false);
+    setOtpDigits("");
   };
 
   return (
@@ -83,15 +79,15 @@ const Otp = () => {
         </h2>
         <div className="w-32 mx-auto h-0.5 mb-5 mt-0 bg-orange-300"></div>
         <form>
-          <div className="mb-6 px-4">
+          <div className="mb-6 px-4 text-center">
             <h2 className="block mb-2 text-xl text-center font-medium text-gray-800">
-              Please Enter the one-time password to verify your account
+              Please Enter the one time password to verify your account
             </h2>
             <p className="text-center">
-              Your Verification code has been sent to {RegEmail}
+              Your Verification code has been send {RegEmail}
             </p>
 
-            <div className="flex space-x-2 mt-8">
+            {/* <div className="flex space-x-2 mt-8">
               {otpDigits.map((digit, index) => (
                 <input
                   key={index}
@@ -102,10 +98,12 @@ const Otp = () => {
                   onChange={(e) => handleOtpChange(e, index)}
                 />
               ))}
-            </div>
+            </div> */}
+
+            <ReactCodeInput type="text" fields={6} onChange={handleOtpChange} />
           </div>
 
-          <div className="flex gap-2 justify-center">
+          <div className=" flex gap-2 justify-center">
             <Button
               variant="basic"
               size="normal"

@@ -19,9 +19,13 @@ import OrderList from "./components/UserDashboard/OrderList";
 import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 import AdminDashboard from "./components/adminDashboard";
 import { Toaster } from "react-hot-toast";
+import { useAuth } from "./contexts/AuthProvider";
 
 function App() {
-  return (
+  const [auth] = useAuth();
+  return !auth ? (
+    "checking auth"
+  ) : (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}>
