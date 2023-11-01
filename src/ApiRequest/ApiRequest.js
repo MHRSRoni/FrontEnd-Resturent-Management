@@ -66,6 +66,22 @@ export const loginRequest = async (reqBody) => {
   }
 };
 
+
+export const changePassword = async (formData) => {
+  try {
+    const response = await axios.put("v2/customer/password-update", formData);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
 export const logoutRequest = async () => {
   try {
     const response = await axios.get("/v2/customer/logout");
