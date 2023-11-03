@@ -155,3 +155,18 @@ export const editProfileRequest = async (reqBody) => {
     };
   }
 };
+
+export const myProfileRequest = async () => {
+  try {
+    const response = await axios.get("/v2/customer/profile");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};

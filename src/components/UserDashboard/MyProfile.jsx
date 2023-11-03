@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { myProfileRequest } from "../../ApiRequest/ApiRequest";
+import LineLoader from "../ui/LineLoader";
 
 const MyProfile = () => {
   const [profileData, setProfileData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("/v2/customer/profile")
-      .then((response) => {
-        setProfileData(response.data);
-        console.log("Data received:", response.data);
-      })
-      .catch((error) => {
-        console.log("Error fetching profile data:", error);
-      });
+    (async () => {
+      setLoading(true);
+      const { status, data } = await myProfileRequest();
+      console.log("API Response:", data);
+
+      if (data.status === "success") {
+        setProfileData(data.data);
+      }
+
+      setLoading(false);
+    })();
   }, []);
 
   console.log("Profile Data:", profileData);
@@ -28,25 +32,26 @@ const MyProfile = () => {
           <>
             <div className="p-2">
               <h5>Name</h5>
-              <p>{`${profileData.data?.firstName} ${profileData.data?.lastName}`}</p>
+              <p>{`${profileData?.firstName} ${profileData?.lastName}`}</p>
             </div>
             <div className="p-2">
               <h5>Mobile</h5>
-              <p>{profileData.data?.phoneNo}</p>
+              <p>{profileData?.phoneNo}</p>
             </div>
             <div className="p-2">
               <h5>Address</h5>
-              <p>{profileData.data?.address}</p>
+              <p>{profileData?.address}</p>
             </div>
             <div className="p-2">
               <h5>Gender</h5>
-              <p>{profileData.data?.gender}</p>
+              <p>{profileData?.gender}</p>
             </div>
           </>
         ) : (
           <p>Loading profile data...</p>
         )}
       </div>
+      {loading && <LineLoader />}
     </div>
   );
 };

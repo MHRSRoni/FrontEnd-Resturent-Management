@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import Button from "../ui/Button";
-import { editProfileRequest } from "../../ApiRequest/ApiRequest";
+import {
+  editProfileRequest,
+  myProfileRequest,
+} from "../../ApiRequest/ApiRequest";
 import LineLoader from "../../components/ui/LineLoader";
 
 const EditProfile = () => {
@@ -15,28 +18,29 @@ const EditProfile = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [genderChanged, setGenderChanged] = useState(false);
 
-  // Check local storage to see if gender has been changed before
   useEffect(() => {
-    const hasGenderChanged = localStorage.getItem("genderChanged");
-    if (hasGenderChanged === "true") {
-      setGenderChanged(true);
-    }
+    (async () => {
+      const { status, data } = await myProfileRequest();
+
+      if (status === 200 && data.data) {
+        setFormData({
+          firstName: data.data.firstName,
+          lastName: data.data.lastName,
+          email: data.data.email,
+          mobile: data.data.phoneNo,
+          address: data.data.address,
+          gender: data.data.gender,
+          profilePic: data.data.profilePic,
+        });
+      }
+    })();
   }, []);
+
+  const isGenderChanged = formData.gender !== "";
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    if (name === "gender" && genderChanged) {
-      return;
-    }
-
-    if (name === "gender" && !genderChanged) {
-      // Set genderChanged to true and store it in local storage
-      setGenderChanged(true);
-      localStorage.setItem("genderChanged", "true");
-    }
 
     setFormData({
       ...formData,
@@ -137,7 +141,7 @@ const EditProfile = () => {
                 value={formData.gender}
                 onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3"
-                disabled={genderChanged}
+                disabled={isGenderChanged}
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
