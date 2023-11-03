@@ -95,11 +95,7 @@ const AllLink = ({ user }) => {
           <div tabIndex={0} className="mx-1">
             <div className="avatar">
               <div className="w-7 text-center capitalize bg-primary rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
-                {user.image ? (
-                  <img src={user.image} />
-                ) : (
-                  <span>{user.username.slice(0, 1)}</span>
-                )}
+                <span>{user.username.slice(0, 1)}</span>
               </div>
             </div>
             <div>{user.username}</div>
