@@ -1,20 +1,18 @@
-
-
-import { useState } from 'react';
-import { changePassword } from '../../ApiRequest/ApiRequest';
-import LineLoader from '../ui/LineLoader';
+import { useState } from "react";
+import { changePassword } from "../../ApiRequest/ApiRequest";
+import LineLoader from "../ui/LineLoader";
 import {
   errorNotification,
   successNotification,
 } from "../../utils/NotificationHelper";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 const ChangePassword = () => {
   const [formData, setFormData] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: '',
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -30,26 +28,26 @@ const ChangePassword = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-  
+
     if (formData.newPassword !== formData.confirmPassword) {
       errorNotification("New password and confirm password do not match.");
       setLoading(false);
       return;
     }
-  
+
     try {
       // Replace with your actual API endpoint
       const response = await changePassword(formData);
-  
+
       if (response.status === 200) {
         successNotification("Password changed successfully");
         setLoading(false);
-  
+
         // Clear the input fields after a successful change
         setFormData({
-          currentPassword: '',
-          newPassword: '',
-          confirmPassword: '',
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
         });
       } else {
         errorNotification("An error occurred while changing the password.");
@@ -68,8 +66,9 @@ const ChangePassword = () => {
       </div>
       <div className="bg-white p-8 min-h-[300px]">
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="flex w-96 flex-col gap-4">
             <input
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               type="password"
               placeholder="Current Password"
               value={formData.currentPassword}
@@ -79,6 +78,7 @@ const ChangePassword = () => {
             />
             <input
               type="password"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               placeholder="New Password"
               value={formData.newPassword}
               onChange={handleInputChange}
@@ -87,6 +87,7 @@ const ChangePassword = () => {
             />
             <input
               type="password"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleInputChange}
@@ -110,4 +111,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-
