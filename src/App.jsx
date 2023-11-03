@@ -19,6 +19,15 @@ import OrderList from "./components/UserDashboard/OrderList";
 import Miscellaneous from "./components/UserDashboard/Miscellaneous";
 import AdminDashboard from "./components/adminDashboard";
 import { Toaster } from "react-hot-toast";
+import EmployeeDetailsPage from "./pages/Employee";
+import About from "./pages/About";
+import Checkout from "./pages/Checkout";
+
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const BASE_URL =
+  import.meta.env.VITE_BASE_URL ||
+  "https://kachchi-palace-v1.onrender.com/api/v1";
 import { useAuth } from "./contexts/AuthProvider";
 
 function App() {
@@ -30,6 +39,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
+          
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<About />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/itemDetailsPage/:id" element={<ItemDetailsPage />} />
           <Route path="/login" element={<Login />} />
@@ -50,6 +62,8 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
         <Route path="/admin/*" element={<AdminDashboard />} />
+        <Route path='/admin/*' element={<AdminDashboard />} />
+        <Route path="/employee" element={<EmployeeDetailsPage />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
