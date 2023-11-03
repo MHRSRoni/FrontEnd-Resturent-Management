@@ -140,3 +140,33 @@ export const getAllWishListDetailsRequest = async () => {
     };
   }
 };
+
+export const editProfileRequest = async (reqBody) => {
+  try {
+    const response = await axios.post("/v2/customer/profile-update", reqBody);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
+
+export const myProfileRequest = async () => {
+  try {
+    const response = await axios.get("/v2/customer/profile");
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      data: error.response.data,
+      status: error.response.status,
+    };
+  }
+};
