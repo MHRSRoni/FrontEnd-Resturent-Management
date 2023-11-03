@@ -29,7 +29,7 @@ const WishList = () => {
       setLoading(true);
       const { status, data } = await getAllWishListDetailsRequest();
 
-      if (status === 200 && data.data.length > 0) {
+      if (status === 200  && data.data.length > 0) {
         setWishList(data.data);
       }
       setLoading(false);
